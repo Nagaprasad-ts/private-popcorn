@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -38,27 +40,15 @@
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-4">Step 1: Choose Your Venue</label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <label class="relative group">
-                                <input type="radio" name="theatre" value="Theatre A" class="peer sr-only" required>
-                                <div class="p-4 bg-white border-2 border-gray-200 rounded-xl cursor-pointer text-center transition-all peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-200">
-                                    <span class="block text-sm font-bold text-gray-700 peer-checked:text-red-700">Studio One</span>
-                                    <span class="block text-[10px] text-gray-400 mt-1 uppercase">2-4 People</span>
-                                </div>
-                            </label>
-                            <label class="relative group">
-                                <input type="radio" name="theatre" value="Theatre B" class="peer sr-only">
-                                <div class="p-4 bg-white border-2 border-gray-200 rounded-xl cursor-pointer text-center transition-all peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-200">
-                                    <span class="block text-sm font-bold text-gray-700 peer-checked:text-red-700">Cinema Pro</span>
-                                    <span class="block text-[10px] text-gray-400 mt-1 uppercase">4-8 People</span>
-                                </div>
-                            </label>
-                            <label class="relative group">
-                                <input type="radio" name="theatre" value="Theatre C" class="peer sr-only">
-                                <div class="p-4 bg-white border-2 border-gray-200 rounded-xl cursor-pointer text-center transition-all peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-200">
-                                    <span class="block text-sm font-bold text-gray-700 peer-checked:text-red-700">Grand Hall</span>
-                                    <span class="block text-[10px] text-gray-400 mt-1 uppercase">8-15 People</span>
-                                </div>
-                            </label>
+                            @foreach ($theatres as $theatre)
+                                <label class="relative group">
+                                    <input type="radio" name="theatre" value="{{ $theatre->id }}" data-price="{{ $theatre->offer_price }}" class="peer sr-only" required>
+                                    <div class="p-4 bg-white border-2 border-gray-200 rounded-xl cursor-pointer text-center transition-all peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-200">
+                                        <span class="block text-sm font-bold text-gray-700 peer-checked:text-red-700">{{ $theatre->name }}</span>
+                                        <span class="block text-xs text-gray-400 mt-1 uppercase">₹{{ $theatre->offer_price }}</span>
+                                    </div>
+                                </label>
+                            @endforeach
                         </div>
                     </div>
 
@@ -109,13 +99,11 @@
                         </div>
                     </div>
 
-                    <input type="hidden" id="price" value="1200">
-
                     <!-- CTA Section -->
                     <div class="pt-4 border-t border-gray-100">
                         <div class="flex items-center justify-between mb-6">
                             <span class="text-sm font-semibold text-gray-400">Total Investment</span>
-                            <span class="text-3xl font-black text-gray-900">₹1,200</span>
+                            <span id="total-price" class="text-3xl font-black text-gray-900">₹0</span>
                         </div>
                         <button type="submit" class="group relative w-full flex items-center justify-center py-4 px-6 border border-transparent rounded-2xl shadow-xl text-lg font-black text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200 transition-all active:scale-[0.98]">
                             Confirm & Pay Securely
@@ -131,9 +119,82 @@
             </div>
         </div>
 
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
         <script>
-            // The rest of your script remains unchanged.
-            // Make sure to add the @csrf token in a meta tag if you are extracting this to a separate JS file.
+            document.addEventListener('DOMContentLoaded', function () {
+                const theatreRadios = document.querySelectorAll('input[name="theatre"]');
+                const dateInput = document.getElementById('date');
+                const slotSelect = document.getElementById('slot');
+                const priceDisplay = document.getElementById('total-price');
+
+                // Initially disable date and slot inputs
+                dateInput.disabled = true;
+                slotSelect.disabled = true;
+
+                // Function to fetch and populate available slots
+                async function fetchAvailableSlots() {
+                    const selectedTheatreEl = document.querySelector('input[name="theatre"]:checked');
+                    const bookingDate = dateInput.value;
+
+                    if (!selectedTheatreEl || !bookingDate) {
+                        return;
+                    }
+
+                    const theatreId = selectedTheatreEl.value;
+
+                    try {
+                        const response = await fetch(`/get-available-slots?theatre_id=${theatreId}&booking_date=${bookingDate}`);
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch available slots.');
+                        }
+                        const availableSlots = await response.json();
+
+                        // Clear existing slots
+                        slotSelect.innerHTML = '';
+
+                        // Populate slots
+                        availableSlots.forEach(slotData => {
+                            const option = document.createElement('option');
+                            option.value = slotData.slot;
+                            option.textContent = slotData.slot;
+                            if (!slotData.available) {
+                                option.disabled = true;
+                                option.textContent += ' (Booked)';
+                            }
+                            slotSelect.appendChild(option);
+                        });
+                        slotSelect.disabled = false; // Enable slot select after populating
+                    } catch (error) {
+                        console.error('Error fetching available slots:', error);
+                        slotSelect.innerHTML = '<option>Error loading slots</option>';
+                        slotSelect.disabled = true;
+                    }
+                }
+
+                theatreRadios.forEach(radio => {
+                    radio.addEventListener('change', function () {
+                        if (this.checked) {
+                            const price = this.getAttribute('data-price');
+                            priceDisplay.textContent = `₹${price}`;
+                            dateInput.disabled = false; // Enable date input when theatre is selected
+                            dateInput.value = ''; // Clear date selection
+                            slotSelect.disabled = true; // Disable slot until date is selected
+                            slotSelect.innerHTML = '<option>Select a date first</option>';
+                        }
+                    });
+                });
+
+                dateInput.addEventListener('change', function () {
+                    if (this.value) {
+                        fetchAvailableSlots(); // Fetch slots when date is selected
+                    } else {
+                        slotSelect.disabled = true;
+                        slotSelect.innerHTML = '<option>Select a date first</option>';
+                    }
+                });
+            });
+
             function getSelectedAddons() {
                 const addons = document.querySelectorAll('input[name="addon"]:checked');
                 let selectedAddons = [];
@@ -150,8 +211,9 @@
                     alert('Please select a theatre.');
                     return;
                 }
-                const theatre_name = selectedTheatreEl.value;
-
+                const theatre_id = selectedTheatreEl.value;
+                const theatre_name = selectedTheatreEl.closest('label').querySelector('.text-sm').textContent;
+                const total_price = selectedTheatreEl.getAttribute('data-price');
 
                 const booking_date = document.getElementById('date').value;
                 if (!booking_date) {
@@ -161,18 +223,24 @@
 
 
                 const slot = document.getElementById('slot').value;
+                if (!slot || document.getElementById('slot').querySelector('option:checked').disabled) {
+                    alert('Please select an available slot.');
+                    return;
+                }
+
                 const purpose = document.getElementById('purpose').value;
                 const addon = getSelectedAddons();
-                const total_price = document.getElementById('price').value;
 
 
                 fetch('/create-order', {
                     method: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({}) // No need to send price
+                    body: JSON.stringify({
+                        theatre_id: theatre_id
+                    })
                 })
                 .then(res => {
                     if (!res.ok) {
@@ -190,7 +258,7 @@
                             fetch('/save-booking', {
                                 method: 'POST',
                                 headers: {
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                                     'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({

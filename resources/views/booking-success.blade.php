@@ -83,10 +83,10 @@
 
                 <!-- Action Buttons (30% Red dominance here) -->
                 <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button class="flex items-center justify-center px-6 py-4 bg-brand-red hover:bg-brand-red-dark text-white rounded-xl font-bold shadow-lg shadow-rose-200 transition-all active:scale-95 group">
+                    <a href="{{ url('/booking/receipt/' . $booking->id) }}" class="flex items-center justify-center px-6 py-4 bg-brand-red hover:bg-brand-red-dark text-white rounded-xl font-bold shadow-lg shadow-rose-200 transition-all active:scale-95 group">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         Get Receipt
-                    </button>
+                    </a>
 
                     <a href="/booking" class="flex items-center justify-center px-6 py-4 bg-white border-2 border-brand-blue text-brand-blue hover:bg-blue-50 rounded-xl font-bold transition-all active:scale-95">
                         Book Another
