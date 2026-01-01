@@ -58,14 +58,12 @@
                             <label for="date" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Booking Date</label>
                             <input type="date" id="date" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
                         </div>
-                        <div>
-                            <label for="slot" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Preferred Slot</label>
-                            <select id="slot" class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
-                                <option>Morning (10 AM - 1 PM)</option>
-                                <option>Afternoon (2 PM - 5 PM)</option>
-                                <option>Evening (6 PM - 9 PM)</option>
-                                <option>Late Night (10 PM - 1 AM)</option>
-                            </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Preferred Slot</label>
+                        <div id="slot-selection" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <!-- Slots will be loaded here by JavaScript -->
                         </div>
                     </div>
 
@@ -73,10 +71,11 @@
                     <div class="space-y-6">
                         <div>
                             <label for="purpose" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Event Type</label>
-                            <select id="purpose" class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white">
-                                <option value="Movie Screening">🎬 Movie Screening</option>
-                                <option value="Private Event">🎉 Private Celebration</option>
-                                <option value="Corporate Event">💼 Corporate Meeting</option>
+                            <select id="purpose" class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white" required>
+                                <option value="" disabled selected>Select an Event Type</option>
+                                @foreach ($eventTypes as $eventType)
+                                    <option value="{{ $eventType->id }}">{{ $eventType->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -125,12 +124,22 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const theatreRadios = document.querySelectorAll('input[name="theatre"]');
                 const dateInput = document.getElementById('date');
-                const slotSelect = document.getElementById('slot');
+                const slotSelection = document.getElementById('slot-selection');
                 const priceDisplay = document.getElementById('total-price');
 
                 // Initially disable date and slot inputs
                 dateInput.disabled = true;
-                slotSelect.disabled = true;
+                slotSelection.innerHTML = '<p class="text-gray-400 text-sm col-span-full">Select a date first</p>';
+                slotSelection.classList.add('pointer-events-none', 'opacity-50');
+
+                // Set minimum date for date input to today
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                const minDate = `${yyyy}-${mm}-${dd}`;
+                dateInput.setAttribute('min', minDate);
+
 
                 // Function to fetch and populate available slots
                 async function fetchAvailableSlots() {
@@ -151,24 +160,100 @@
                         const availableSlots = await response.json();
 
                         // Clear existing slots
-                        slotSelect.innerHTML = '';
+                        slotSelection.innerHTML = '';
+                        slotSelection.classList.remove('pointer-events-none', 'opacity-50');
+
 
                         // Populate slots
+                        if (availableSlots.length === 0) {
+                            slotSelection.innerHTML = '<p class="text-gray-400 text-sm col-span-full">No slots available for this date.</p>';
+                            slotSelection.classList.add('pointer-events-none', 'opacity-50');
+                            return;
+                        }
+
                         availableSlots.forEach(slotData => {
-                            const option = document.createElement('option');
-                            option.value = slotData.slot;
-                            option.textContent = slotData.slot;
-                            if (!slotData.available) {
-                                option.disabled = true;
-                                option.textContent += ' (Booked)';
+                            const label = document.createElement('label');
+                            label.classList.add('relative', 'group');
+
+                            const input = document.createElement('input');
+                            input.type = 'radio';
+                            input.name = 'slot';
+                            input.value = slotData.slot;
+                            input.classList.add('peer', 'sr-only');
+                            input.required = true;
+                            input.setAttribute('data-slot-value', slotData.slot); // Store slot value
+
+                            const div = document.createElement('div');
+                            div.classList.add('p-4', 'bg-white', 'border-2', 'rounded-xl', 'cursor-pointer', 'text-center', 'transition-all');
+
+                            const spanSlot = document.createElement('span');
+                            spanSlot.classList.add('block', 'text-sm', 'font-bold', 'text-gray-700');
+                            spanSlot.textContent = slotData.slot;
+
+                            const spanStatus = document.createElement('span');
+                            spanStatus.classList.add('block', 'text-[10px]', 'mt-1', 'uppercase');
+
+                            let isPastSlot = false;
+                            const selectedDate = new Date(bookingDate);
+                            const currentDate = new Date();
+
+                            // Normalize dates to compare only day, month, year
+                            selectedDate.setHours(0, 0, 0, 0);
+                            currentDate.setHours(0, 0, 0, 0);
+
+                            if (selectedDate.getTime() === currentDate.getTime()) {
+                                // It's today's date, check if the slot has already passed
+                                const now = new Date();
+                                const slotTimeStr = slotData.slot; // e.g., "09:00 AM"
+
+                                // Convert slot time to 24-hour format for comparison
+                                const [time, period] = slotTimeStr.split(' ');
+                                let [hours, minutes] = time.split(':').map(Number);
+
+                                if (period === 'PM' && hours !== 12) {
+                                    hours += 12;
+                                } else if (period === 'AM' && hours === 12) {
+                                    hours = 0;
+                                }
+
+                                // Create a Date object for the slot time on today's date
+                                const slotDateTime = new Date();
+                                slotDateTime.setHours(hours, minutes, 0, 0);
+
+                                if (slotDateTime.getTime() < now.getTime()) {
+                                    isPastSlot = true;
+                                }
                             }
-                            slotSelect.appendChild(option);
+
+
+                            if (isPastSlot) {
+                                input.disabled = true;
+                                div.classList.add('border-gray-200', 'bg-gray-100', 'text-gray-400', 'line-through');
+                                spanStatus.classList.add('text-gray-400');
+                                spanStatus.textContent = 'Past';
+                            } else if (!slotData.available) {
+                                input.disabled = true;
+                                div.classList.add('border-gray-200', 'bg-gray-100', 'text-gray-400', 'line-through');
+                                spanStatus.classList.add('text-gray-400');
+                                spanStatus.textContent = 'Booked';
+                            } else {
+                                div.classList.add('border-gray-200', 'hover:border-blue-200', 'peer-checked:border-red-600', 'peer-checked:bg-red-50');
+                                spanSlot.classList.add('peer-checked:text-red-700');
+                                spanStatus.classList.add('text-green-500');
+                                spanStatus.textContent = 'Available';
+                            }
+
+                            div.appendChild(spanSlot);
+                            div.appendChild(spanStatus);
+                            label.appendChild(input);
+                            label.appendChild(div);
+                            slotSelection.appendChild(label);
                         });
-                        slotSelect.disabled = false; // Enable slot select after populating
+
                     } catch (error) {
                         console.error('Error fetching available slots:', error);
-                        slotSelect.innerHTML = '<option>Error loading slots</option>';
-                        slotSelect.disabled = true;
+                        slotSelection.innerHTML = '<p class="text-red-500 text-sm col-span-full">Error loading slots. Please try again.</p>';
+                        slotSelection.classList.add('pointer-events-none', 'opacity-50');
                     }
                 }
 
@@ -179,8 +264,8 @@
                             priceDisplay.textContent = `₹${price}`;
                             dateInput.disabled = false; // Enable date input when theatre is selected
                             dateInput.value = ''; // Clear date selection
-                            slotSelect.disabled = true; // Disable slot until date is selected
-                            slotSelect.innerHTML = '<option>Select a date first</option>';
+                            slotSelection.innerHTML = '<p class="text-gray-400 text-sm col-span-full">Select a date first</p>'; // Clear and reset slot selection
+                            slotSelection.classList.add('pointer-events-none', 'opacity-50');
                         }
                     });
                 });
@@ -189,8 +274,8 @@
                     if (this.value) {
                         fetchAvailableSlots(); // Fetch slots when date is selected
                     } else {
-                        slotSelect.disabled = true;
-                        slotSelect.innerHTML = '<option>Select a date first</option>';
+                        slotSelection.innerHTML = '<p class="text-gray-400 text-sm col-span-full">Select a date first</p>';
+                        slotSelection.classList.add('pointer-events-none', 'opacity-50');
                     }
                 });
             });
@@ -212,7 +297,7 @@
                     return;
                 }
                 const theatre_id = selectedTheatreEl.value;
-                const theatre_name = selectedTheatreEl.closest('label').querySelector('.text-sm').textContent;
+                const theatre_name = selectedTheatreEl.closest('label').querySelector('span.block.text-sm').textContent; // Correctly get theatre name
                 const total_price = selectedTheatreEl.getAttribute('data-price');
 
                 const booking_date = document.getElementById('date').value;
@@ -221,14 +306,16 @@
                     return;
                 }
 
-
-                const slot = document.getElementById('slot').value;
-                if (!slot || document.getElementById('slot').querySelector('option:checked').disabled) {
+                const selectedSlotEl = document.querySelector('input[name="slot"]:checked');
+                if (!selectedSlotEl || selectedSlotEl.disabled) {
                     alert('Please select an available slot.');
                     return;
                 }
+                const slot = selectedSlotEl.value;
 
-                const purpose = document.getElementById('purpose').value;
+
+                const purposeSelect = document.getElementById('purpose');
+                const purpose = purposeSelect.options[purposeSelect.selectedIndex].text;
                 const addon = getSelectedAddons();
 
 
@@ -249,12 +336,16 @@
                     return res.json();
                 })
                 .then(order => {
+                    console.log('Razorpay Order:', order); // 🔍 debug
                     var options = {
                         key: "{{ env('RAZORPAY_KEY') }}",
-                        amount: order.amount,
+                        order_id: order.id,      // ✅ MUST EXIST
+                        amount: order.amount, // Amount in paise
                         currency: "INR",
                         order_id: order.id,
                         handler: function (response) {
+                            console.log('Payment Response:', response); // 🔍 debug
+                            alert(JSON.stringify(response, null, 2));
                             fetch('/save-booking', {
                                 method: 'POST',
                                 headers: {
@@ -262,6 +353,7 @@
                                     'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({
+                                    theatre_id: theatre_id,
                                     theatre_name: theatre_name,
                                     booking_date: booking_date,
                                     slot: slot,

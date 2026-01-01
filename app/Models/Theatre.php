@@ -12,4 +12,9 @@ class Theatre extends Model
         'base_price',
         'offer_price',
     ];
+
+    public function slots()
+    {
+        return $this->hasMany(Slot::class);
+    }
 }

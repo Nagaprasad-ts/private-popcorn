@@ -15,21 +15,21 @@ class TheatreSeeder extends Seeder
     public function run(): void
     {
         Theatre::create([
-            'name' => 'Studio One',
+            'name' => 'Couple Nest',
             'description' => '2-4 People',
             'base_price' => 1500,
             'offer_price' => 1200,
         ]);
 
         Theatre::create([
-            'name' => 'Cinema Pro',
+            'name' => 'Fam Jam',
             'description' => '4-8 People',
             'base_price' => 2500,
             'offer_price' => 2000,
         ]);
 
         Theatre::create([
-            'name' => 'Grand Hall',
+            'name' => 'Friends Den',
             'description' => '8-15 People',
             'base_price' => 4000,
             'offer_price' => 3500,

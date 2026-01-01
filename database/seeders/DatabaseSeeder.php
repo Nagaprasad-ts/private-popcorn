@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         $this->call(TheatreSeeder::class);
+        $this->call(SlotSeeder::class);
+        $this->call(EventTypeSeeder::class);
     }
 }

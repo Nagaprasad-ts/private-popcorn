@@ -10,21 +10,17 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 
 use App\Models\Theatre;
+use App\Models\Slot;
+use App\Models\EventType; // Added EventType model
 use Illuminate\Validation\ValidationException;
 
 class BookingController extends Controller
 {
-    private $slots = [
-        'Morning (10 AM - 1 PM)',
-        'Afternoon (2 PM - 5 PM)',
-        'Evening (6 PM - 9 PM)',
-        'Late Night (10 PM - 1 AM)',
-    ];
-
     public function index()
     {
         $theatres = Theatre::all();
-        return view('booking', compact('theatres'));
+        $eventTypes = EventType::all(); // Fetch all event types
+        return view('booking', compact('theatres', 'eventTypes')); // Pass event types to the view
     }
 
     public function getAvailableSlots(Request $request)
@@ -37,8 +33,9 @@ class BookingController extends Controller
         $theatre_id = $request->theatre_id;
         $booking_date = $request->booking_date;
 
-        // Get the theatre name for querying existing bookings
         $theatre = Theatre::findOrFail($theatre_id);
+        $allTheatreSlots = $theatre->slots()->pluck('time_slot')->toArray();
+
 
         $bookedSlots = Booking::where('theatre_name', $theatre->name)
             ->where('booking_date', $booking_date)
@@ -46,7 +43,7 @@ class BookingController extends Controller
             ->toArray();
 
         $availableSlots = [];
-        foreach ($this->slots as $slot) {
+        foreach ($allTheatreSlots as $slot) {
             $availableSlots[] = [
                 'slot' => $slot,
                 'available' => !in_array($slot, $bookedSlots),
@@ -59,52 +56,86 @@ class BookingController extends Controller
 
     public function createOrder(Request $request)
     {
-        $theatre = Theatre::find($request->theatre_id);
+        $request->validate([
+            'theatre_id' => 'required|exists:theatres,id'
+        ]);
+
+        $theatre = Theatre::findOrFail($request->theatre_id);
+
+        $amount = $theatre->offer_price * 100; // paise
 
         $api = new Api(
             env('RAZORPAY_KEY'),
             env('RAZORPAY_SECRET')
         );
 
-
         $order = $api->order->create([
-            'amount' => $theatre->offer_price * 100,
-            'currency' => 'INR'
+            'amount'   => $amount,
+            'currency' => 'INR',
+            'receipt'  => 'booking_' . time()
         ]);
 
-
-        return response()->json($order);
+        return response()->json([
+            'id'       => $order->id,
+            'amount'   => $order->amount,
+            'currency' => $order->currency
+        ]);
     }
 
 
     public function store(Request $request)
     {
-        // Prevent dual bookings
-        $existingBooking = Booking::where('theatre_name', $request->theatre_name)
-                                    ->where('booking_date', $request->booking_date)
-                                    ->where('slot', $request->slot)
-                                    ->first();
+        \Log::info('Razorpay verify payload', $request->all());
+        try {
+            $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
 
-        if ($existingBooking) {
-            throw ValidationException::withMessages([
-                'slot' => 'This slot is already booked for the selected theatre and date. Please choose another slot.',
+            $api->utility->verifyPaymentSignature([
+                'razorpay_order_id'   => $request->razorpay_order_id,
+                'razorpay_payment_id' => $request->razorpay_payment_id,
+                'razorpay_signature'  => $request->razorpay_signature,
             ]);
+
+            // Get theatre
+            $theatre = Theatre::findOrFail($request->theatre_id);
+
+            // Prevent double booking
+            $existingBooking = Booking::where('theatre_name', $theatre->name)
+                ->where('booking_date', $request->booking_date)
+                ->where('slot', $request->slot)
+                ->first();
+
+            if ($existingBooking) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Slot already booked'
+                ], 409);
+            }
+
+            // Create booking
+            $booking = Booking::create([
+                'theatre_name' => $theatre->name,
+                'booking_date' => $request->booking_date,
+                'slot'         => $request->slot,
+                'purpose'      => $request->purpose,
+                'addon'        => $request->addon,
+                'total_price'  => $request->total_price,
+                'razorpay_payment_id' => $request->razorpay_payment_id,
+                'razorpay_order_id'   => $request->razorpay_order_id,
+                'razorpay_signature'  => $request->razorpay_signature,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'booking_id' => $booking->id
+            ]);
+
+        } catch (\Razorpay\Api\Errors\SignatureVerificationError $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Payment verification failed'
+            ], 400);
         }
-
-        $booking = Booking::create([
-            'theatre_name' => $request->theatre_name,
-            'booking_date' => $request->booking_date,
-            'slot' => $request->slot,
-            'purpose' => $request->purpose,
-            'addon' => $request->addon,
-            'total_price' => $request->total_price,
-            'razorpay_payment_id' => $request->razorpay_payment_id,
-            'razorpay_order_id' => $request->razorpay_order_id,
-            'razorpay_signature' => $request->razorpay_signature,
-        ]);
-        return response()->json(['success' => true, 'booking_id' => $booking->id]);
     }
-
 
     public function success(Request $request)
     {
