@@ -4,12 +4,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
-Route::get('/', [BookingController::class, 'index']);
+Route::get('/booking', [BookingController::class, 'index']);
 Route::post('/create-order', [BookingController::class, 'createOrder']);
 Route::post('/save-booking', [BookingController::class, 'store']);
 Route::get('/booking/success', [BookingController::class, 'success']);

@@ -33,6 +33,11 @@ class TheatreResource extends Resource
                 Forms\Components\TextInput::make('offer_price')
                     ->required()
                     ->numeric(),
+                Forms\Components\FileUpload::make('image')
+                    ->label('Theatre Image')
+                    ->image() // validates image file type
+                    ->directory('theatres') // optional: stores in storage/app/public/theatres
+                    ->required(), // remove if optional
             ]);
     }
 

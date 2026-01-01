@@ -38,14 +38,28 @@
                 <form class="mt-10 space-y-8" onsubmit="event.preventDefault(); pay();">
                     <!-- Theatre Selection (Visual Radio Buttons) -->
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-4">Step 1: Choose Your Venue</label>
+                        <label class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-4">SChoose Your Venue</label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             @foreach ($theatres as $theatre)
                                 <label class="relative group">
                                     <input type="radio" name="theatre" value="{{ $theatre->id }}" data-price="{{ $theatre->offer_price }}" class="peer sr-only" required>
-                                    <div class="p-4 bg-white border-2 border-gray-200 rounded-xl cursor-pointer text-center transition-all peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-200">
-                                        <span class="block text-sm font-bold text-gray-700 peer-checked:text-red-700">{{ $theatre->name }}</span>
-                                        <span class="block text-xs text-gray-400 mt-1 uppercase">₹{{ $theatre->offer_price }}</span>
+                                    <div class="pb-4 bg-white border-2 border-gray-200 rounded-xl cursor-pointer text-center transition-all peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-200">
+                                        <img src="{{ asset('storage/' . $theatre->image) }}" alt="{{ $theatre->name }}" class="w-full h-32 object-cover mb-3 rounded-t-lg">
+                                        <div class="mt-2 flex flex-row items-center justify-around space-x-2 block md:hidden">
+                                            <span class="block text-md font-semibold text-gray-700 peer-checked:text-red-700 text-left">{{ $theatre->name }}</span>
+                                            <div class="text-right flex flex-row items-baseline justify-end space-x-2">
+                                                <span class="block text-xs text-gray-500 line-through mt-1">₹{{ $theatre->base_price }}</span>
+                                                <span class="block text-lg text-gray-800 font-bold mt-1 uppercase">₹{{ $theatre->offer_price }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2 hidden md:block">
+                                            <span class="block text-md font-semibold text-gray-700 peer-checked:text-red-700">{{ $theatre->name }}</span>
+                                            <div class="text-right flex flex-row items-end justify-center space-x-3">
+                                                <span class="block text-xs text-gray-500 line-through mt-1">₹{{ $theatre->base_price }}</span>
+                                                <span class="block text-lg text-gray-800 font-bold mt-1 uppercase">₹{{ $theatre->offer_price }}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </label>
                             @endforeach
@@ -55,13 +69,13 @@
                     <!-- Date and Time -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label for="date" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Booking Date</label>
+                            <label for="date" class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-2">Booking Date</label>
                             <input type="date" id="date" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Preferred Slot</label>
+                        <label class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-2">Preferred Slot</label>
                         <div id="slot-selection" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                             <!-- Slots will be loaded here by JavaScript -->
                         </div>
@@ -86,7 +100,7 @@
                     <!-- Purpose & Add-ons -->
                     <div class="space-y-6">
                         <div>
-                            <label for="purpose" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Event Type</label>
+                            <label for="purpose" class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-2">Event Type</label>
                             <select id="purpose" class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white" required>
                                 <option value="" disabled selected>Select an Event Type</option>
                                 @foreach ($eventTypes as $eventType)
@@ -96,7 +110,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-3">Optional Enhancements</label>
+                            <label class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-3">Optional Add Ons</label>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <label class="flex items-center p-3 border border-gray-200 rounded-xl bg-gray-50 cursor-pointer hover:bg-white transition-all">
                                     <input id="addon1" name="addon" type="checkbox" value="Popcorn" class="h-5 w-5 rounded-md border-gray-300 text-red-600 focus:ring-blue-500">
@@ -117,7 +131,7 @@
                     <!-- CTA Section -->
                     <div class="pt-4 border-t border-gray-100">
                         <div class="flex items-center justify-between mb-6">
-                            <span class="text-sm font-semibold text-gray-400">Total Investment</span>
+                            <span class="text-md font-bold text-gray-600">Grand Total</span>
                             <span id="total-price" class="text-3xl font-black text-gray-900">₹0</span>
                         </div>
                         <button type="submit" class="group relative w-full flex items-center justify-center py-4 px-6 border border-transparent rounded-2xl shadow-xl text-lg font-black text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200 transition-all active:scale-[0.98]">
@@ -182,7 +196,7 @@
 
                         // Populate slots
                         if (availableSlots.length === 0) {
-                            slotSelection.innerHTML = '<p class="text-gray-400 text-sm col-span-full">No slots available for this date.</p>';
+                            slotSelection.innerHTML = '<p class="text-gray-400 text-md col-span-full">No slots available for this date.</p>';
                             slotSelection.classList.add('pointer-events-none', 'opacity-50');
                             return;
                         }
@@ -249,11 +263,22 @@
                                 spanStatus.textContent = 'Past';
                             } else if (!slotData.available) {
                                 input.disabled = true;
-                                div.classList.add('border-gray-200', 'bg-gray-100', 'text-gray-400', 'line-through');
-                                spanStatus.classList.add('text-gray-400');
+                                div.classList.add(
+                                    'border-red-600',    // make border red
+                                    'bg-red-100',        // light red background
+                                    'text-red-700',      // strong red text
+                                    'line-through',
+                                    'cursor-not-allowed' // indicate non-interactive
+                                );
+                                spanStatus.classList.add('text-red-700', 'font-bold'); // bold and bright red
                                 spanStatus.textContent = 'Booked';
                             } else {
-                                div.classList.add('border-gray-200', 'hover:border-blue-200', 'peer-checked:border-red-600', 'peer-checked:bg-red-50');
+                                div.classList.add(
+                                    'border-gray-200',
+                                    'hover:border-blue-200',
+                                    'peer-checked:border-green-600',
+                                    'peer-checked:bg-green-50'
+                                );
                                 spanSlot.classList.add('peer-checked:text-red-700');
                                 spanStatus.classList.add('text-green-500');
                                 spanStatus.textContent = 'Available';

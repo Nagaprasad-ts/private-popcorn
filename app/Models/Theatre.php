@@ -11,6 +11,7 @@ class Theatre extends Model
         'description',
         'base_price',
         'offer_price',
+        'image',
     ];
 
     public function slots()
