@@ -67,10 +67,12 @@
                         <span class="text-sm font-semibold text-gray-800">{{ $booking->purpose }}</span>
                     </div>
 
-                     @if($booking->addon)
-                        <div class="flex justify-between items-center py-4 border-b border-dashed border-gray-200">
+                    @if(!empty($booking->addon))
+                        <div class="flex justify-between items-start py-4 border-b border-dashed border-gray-200">
                             <dt class="text-xs font-bold text-brand-blue uppercase tracking-widest">Add-ons</dt>
-                            <dd class="text-sm font-semibold text-gray-800">{{ $booking->addon }}</dd>
+                            <dd class="text-sm font-semibold text-gray-800 text-right">
+                                {{ implode(', ', $booking->addon) }}
+                            </dd>
                         </div>
                     @endif
 
@@ -95,8 +97,7 @@
 
                 <!-- Support Text -->
                 <p class="mt-8 text-center text-xs text-gray-400 font-medium">
-                    A confirmation email has been sent to your registered address.<br/>
-                    Need help? <a href="#" class="text-brand-blue underline decoration-brand-red underline-offset-4">Contact Support</a>
+                    Need help? <a href="mailto:privatepopcorn913@gmail.com" class="text-brand-blue underline decoration-brand-red underline-offset-4">Contact Support</a> | Call us: <a href="tel:+918884447958" class="text-brand-blue underline decoration-brand-red underline-offset-4">+91 88844 47958</a>
                 </p>
             </div>
         </div>

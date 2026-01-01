@@ -17,15 +17,15 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone');
 
             $table->string('theatre_name');
             $table->date('booking_date');
             $table->string('slot');
             $table->string('purpose');
-            $table->string('addon')->nullable();
-            $table->integer('total_price');
+            $table->json('addon')->nullable();
+            $table->decimal('total_price', 10, 2);
 
             $table->string('razorpay_payment_id');
             $table->string('razorpay_order_id');

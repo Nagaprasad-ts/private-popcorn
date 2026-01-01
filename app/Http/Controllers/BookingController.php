@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Theatre;
 use App\Models\Slot;
 use App\Models\EventType; // Added EventType model
+use \App\Models\Addon;
 use Illuminate\Validation\ValidationException;
 
 class BookingController extends Controller
@@ -20,7 +21,8 @@ class BookingController extends Controller
     {
         $theatres = Theatre::all();
         $eventTypes = EventType::all(); // Fetch all event types
-        return view('booking', compact('theatres', 'eventTypes')); // Pass event types to the view
+        $addons = Addon::all(); // fetch all add ons
+        return view('booking', compact('theatres', 'eventTypes', 'addons')); // Pass event types and addons to the view
     }
 
     public function getAvailableSlots(Request $request)
@@ -59,26 +61,37 @@ class BookingController extends Controller
         \Log::info('CREATE ORDER HIT', $request->all());
 
         $request->validate([
-            'theatre_id' => 'required|exists:theatres,id'
+            'theatre_id' => 'required|exists:theatres,id',
+            'addons' => 'nullable|array', // expect array of addon IDs
+            'addons.*' => 'exists:addons,id'
         ]);
-
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'contact_no' => 'required|string|min:10|max:10',
-        //     'email' => 'required|email',
-        // ]);
 
         $theatre = Theatre::findOrFail($request->theatre_id);
 
-        $amount = $theatre->offer_price * 100; // paise
+        // Start with theatre offer price
+        $totalAmount = $theatre->offer_price;
 
-        $api = new Api(
+        $selectedAddons = [];
+
+        // If any addons are selected, add their prices
+        if ($request->has('addons')) {
+            $addons = Addon::whereIn('id', $request->addons)->get();
+
+            foreach ($addons as $addon) {
+                $totalAmount += $addon->price;
+                $selectedAddons[] = $addon->name;
+            }
+        }
+
+        $amountInPaise = $totalAmount * 100; // Razorpay expects amount in paise
+
+        $api = new \Razorpay\Api\Api(
             env('RAZORPAY_KEY'),
             env('RAZORPAY_SECRET')
         );
 
         $order = $api->order->create([
-            'amount'   => $amount,
+            'amount'   => $amountInPaise,
             'currency' => 'INR',
             'receipt'  => 'booking_' . time()
         ]);
@@ -86,10 +99,11 @@ class BookingController extends Controller
         return response()->json([
             'id'       => $order->id,
             'amount'   => $order->amount,
-            'currency' => $order->currency
+            'currency' => $order->currency,
+            'addons'   => $selectedAddons, // optional, for debugging
+            'total'    => $totalAmount     // optional, for client-side display
         ]);
     }
-
 
     public function store(Request $request)
     {
@@ -153,10 +167,10 @@ class BookingController extends Controller
 
     public function success(Request $request)
     {
-        $booking = Booking::find($request->booking_id);
+        $booking = Booking::findOrFail($request->booking_id);
+
         return view('booking-success', compact('booking'));
     }
-
 
     public function failed()
     {
@@ -167,7 +181,8 @@ class BookingController extends Controller
     public function downloadReceipt($id)
     {
         $booking = Booking::find($id);
+        $fileName = 'receipt-' . $booking->razorpay_payment_id . '.pdf';
         $pdf = Pdf::loadView('receipt', compact('booking'));
-        return $pdf->download('receipt-booking-'.$id.'.pdf');
+        return $pdf->download($fileName);
     }
 }

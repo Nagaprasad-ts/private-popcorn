@@ -19,7 +19,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     <body class="h-full font-sans antialiased text-gray-800 selection:bg-red-100">
         <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-2xl w-full space-y-8 bg-white p-8 sm:p-12 rounded-2xl shadow-2xl border border-gray-100">
+            <div class="max-w-3xl w-full space-y-8 bg-white p-8 sm:p-12 rounded-2xl shadow-2xl border border-gray-100">
                 <!-- Header Section -->
                 <div class="text-center">
                     <div class="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-red-50 text-red-600">
@@ -45,17 +45,9 @@
                                     <input type="radio" name="theatre" value="{{ $theatre->id }}" data-price="{{ $theatre->offer_price }}" class="peer sr-only" required>
                                     <div class="pb-4 bg-white border-2 border-gray-200 rounded-xl cursor-pointer text-center transition-all peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-200">
                                         <img src="{{ asset('storage/' . $theatre->image) }}" alt="{{ $theatre->name }}" class="w-full h-32 object-cover mb-3 rounded-t-lg">
-                                        <div class="mt-2 flex flex-row items-center justify-around space-x-2 block md:hidden">
+                                        <div class="mt-2 flex flex-row items-center justify-around space-x-2">
                                             <span class="block text-md font-semibold text-gray-700 peer-checked:text-red-700 text-left">{{ $theatre->name }}</span>
                                             <div class="text-right flex flex-row items-baseline justify-end space-x-2">
-                                                <span class="block text-xs text-gray-500 line-through mt-1">₹{{ $theatre->base_price }}</span>
-                                                <span class="block text-lg text-gray-800 font-bold mt-1 uppercase">₹{{ $theatre->offer_price }}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-2 hidden md:block">
-                                            <span class="block text-md font-semibold text-gray-700 peer-checked:text-red-700">{{ $theatre->name }}</span>
-                                            <div class="text-right flex flex-row items-end justify-center space-x-3">
                                                 <span class="block text-xs text-gray-500 line-through mt-1">₹{{ $theatre->base_price }}</span>
                                                 <span class="block text-lg text-gray-800 font-bold mt-1 uppercase">₹{{ $theatre->offer_price }}</span>
                                             </div>
@@ -112,18 +104,20 @@
                         <div>
                             <label class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-3">Optional Add Ons</label>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                <label class="flex items-center p-3 border border-gray-200 rounded-xl bg-gray-50 cursor-pointer hover:bg-white transition-all">
-                                    <input id="addon1" name="addon" type="checkbox" value="Popcorn" class="h-5 w-5 rounded-md border-gray-300 text-red-600 focus:ring-blue-500">
-                                    <span class="ml-3 text-sm text-gray-700 font-medium">Popcorn</span>
-                                </label>
-                                <label class="flex items-center p-3 border border-gray-200 rounded-xl bg-gray-50 cursor-pointer hover:bg-white transition-all">
-                                    <input id="addon2" name="addon" type="checkbox" value="Drinks" class="h-5 w-5 rounded-md border-gray-300 text-red-600 focus:ring-blue-500">
-                                    <span class="ml-3 text-sm text-gray-700 font-medium">Beverages</span>
-                                </label>
-                                <label class="flex items-center p-3 border border-gray-200 rounded-xl bg-gray-50 cursor-pointer hover:bg-white transition-all">
-                                    <input id="addon3" name="addon" type="checkbox" value="3D Glasses" class="h-5 w-5 rounded-md border-gray-300 text-red-600 focus:ring-blue-500">
-                                    <span class="ml-3 text-sm text-gray-700 font-medium">3D Setup</span>
-                                </label>
+                                @foreach ($addons as $addon)
+                                    <label class="flex items-center p-3 border border-gray-200 rounded-xl bg-gray-50 cursor-pointer hover:bg-white transition-all">
+                                        <input
+                                            id="addon{{ $addon->id }}"
+                                            name="addon"
+                                            type="checkbox"
+                                            data-id="{{ $addon->id }}"
+                                            data-name="{{ $addon->name }}"
+                                            data-price="{{ $addon->price }}"
+                                            class="addon-checkbox h-5 w-5 rounded-md border-gray-300 text-red-600 focus:ring-blue-500"
+                                        >
+                                        <span class="ml-3 text-sm text-gray-700 font-medium">{{ $addon->name }} (₹{{ $addon->price }})</span>
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -156,6 +150,15 @@
                 const dateInput = document.getElementById('date');
                 const slotSelection = document.getElementById('slot-selection');
                 const priceDisplay = document.getElementById('total-price');
+                const addonCheckboxes = document.querySelectorAll('.addon-checkbox');
+
+                let basePrice = 0;
+                let addonTotal = 0;
+
+                function updateTotalPrice() {
+                    const total = basePrice + addonTotal;
+                    priceDisplay.textContent = `₹${total}`;
+                }
 
                 // Initially disable date and slot inputs
                 dateInput.disabled = true;
@@ -301,13 +304,34 @@
                 theatreRadios.forEach(radio => {
                     radio.addEventListener('change', function () {
                         if (this.checked) {
-                            const price = this.getAttribute('data-price');
-                            priceDisplay.textContent = `₹${price}`;
-                            dateInput.disabled = false; // Enable date input when theatre is selected
-                            dateInput.value = ''; // Clear date selection
-                            slotSelection.innerHTML = '<p class="text-gray-400 text-sm col-span-full">Select a date first</p>'; // Clear and reset slot selection
+                            basePrice = parseFloat(this.getAttribute('data-price')) || 0;
+
+                            // Reset addons when theatre changes
+                            addonTotal = 0;
+                            document.querySelectorAll('.addon-checkbox').forEach(cb => cb.checked = false);
+
+                            updateTotalPrice();
+
+                            dateInput.disabled = false;
+                            dateInput.value = '';
+                            slotSelection.innerHTML =
+                                '<p class="text-gray-400 text-sm col-span-full">Select a date first</p>';
                             slotSelection.classList.add('pointer-events-none', 'opacity-50');
                         }
+                    });
+                });
+
+                addonCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function () {
+                        const price = parseFloat(this.getAttribute('data-price')) || 0;
+
+                        if (this.checked) {
+                            addonTotal += price;
+                        } else {
+                            addonTotal -= price;
+                        }
+
+                        updateTotalPrice();
                     });
                 });
 
@@ -324,10 +348,15 @@
             function getSelectedAddons() {
                 const addons = document.querySelectorAll('input[name="addon"]:checked');
                 let selectedAddons = [];
+                let addonsTotal = 0;
+
                 addons.forEach((checkbox) => {
-                    selectedAddons.push(checkbox.value);
+                    const [name, price] = checkbox.value.split('|'); // we'll store value as "Popcorn|150"
+                    selectedAddons.push(name.trim());
+                    addonsTotal += parseFloat(price);
                 });
-                return selectedAddons.join(', ');
+
+                return { names: selectedAddons.join(', '), total: addonsTotal };
             }
 
 
@@ -337,10 +366,28 @@
                     alert('Please select a theatre.');
                     return;
                 }
-                const theatre_id = selectedTheatreEl.value;
-                const theatre_name = selectedTheatreEl.closest('label').querySelector('span.block.text-sm').textContent; // Correctly get theatre name
-                const total_price = selectedTheatreEl.getAttribute('data-price');
 
+                const theatre_id = selectedTheatreEl.value;
+                const theatre_name = selectedTheatreEl.closest('label').querySelector('span.block.text-md').textContent;
+
+                // Parse theatre price as float
+                let total_price = parseFloat(selectedTheatreEl.getAttribute('data-price'));
+
+                // Get selected addons
+                const addonCheckboxes = document.querySelectorAll('input[name="addon"]:checked');
+                const addonIds = [];
+                const addonNames = [];
+                let addonsTotal = 0;
+
+                addonCheckboxes.forEach(cb => {
+                    addonIds.push(cb.dataset.id);           // send IDs to backend
+                    addonNames.push(cb.dataset.name);       // for display / saving
+                    addonsTotal += parseFloat(cb.dataset.price); // sum prices
+                });
+
+                total_price += addonsTotal;
+
+                // Contact info
                 const name = document.getElementById('name').value;
                 const phone = document.getElementById('contact_no').value;
                 const email = document.getElementById('email').value;
@@ -363,12 +410,10 @@
                 }
                 const slot = selectedSlotEl.value;
 
-
                 const purposeSelect = document.getElementById('purpose');
                 const purpose = purposeSelect.options[purposeSelect.selectedIndex].text;
-                const addon = getSelectedAddons();
 
-
+                // Create Razorpay order
                 fetch('/create-order', {
                     method: 'POST',
                     headers: {
@@ -376,26 +421,22 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        theatre_id: theatre_id
+                        theatre_id: theatre_id,
+                        addons: addonIds,          // send addon IDs for backend
+                        total_price: total_price   // optional: backend can recalc too
                     })
                 })
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return res.json();
-                })
+                .then(res => res.json())
                 .then(order => {
-                    console.log('Razorpay Order:', order); // 🔍 debug
                     var options = {
                         key: "{{ env('RAZORPAY_KEY') }}",
-                        order_id: order.id,      // ✅ MUST EXIST
-                        amount: order.amount, // Amount in paise
+                        amount: total_price * 100, // in paise
                         currency: "INR",
                         order_id: order.id,
-                        handler: function (response) {
-                            console.log('Payment Response:', response); // 🔍 debug
-                            alert(JSON.stringify(response, null, 2));
+                        name: "{{ env('APP_NAME') }}",
+                        description: "Booking Payment",
+                        handler: function(response) {
+                            // Successful payment
                             fetch('/save-booking', {
                                 method: 'POST',
                                 headers: {
@@ -411,7 +452,7 @@
                                     booking_date: booking_date,
                                     slot: slot,
                                     purpose: purpose,
-                                    addon: addon,
+                                    addon: addonNames,
                                     total_price: total_price,
                                     razorpay_payment_id: response.razorpay_payment_id,
                                     razorpay_order_id: response.razorpay_order_id,
@@ -433,20 +474,23 @@
                         },
                         modal: {
                             ondismiss: function() {
+                                // Only called if user closes modal without paying
                                 window.location.href = '/booking/failed';
                             }
                         }
                     };
+
                     var rzp = new Razorpay(options);
-                    rzp.on('payment.failed', function (response){
-                            window.location.href = '/booking/failed';
+
+                    // Only for failed payment events triggered by Razorpay
+                    rzp.on('payment.failed', function(response){
+                        console.error('Razorpay payment failed:', response);
+                        window.location.href = '/booking/failed';
                     });
+
                     rzp.open();
                 })
-                .catch(error => {
-                    console.error('Error creating order:', error);
-                    alert('Could not initiate payment. Please try again.');
-                });
+                .catch(() => alert('Could not initiate payment. Please try again.'));
             }
         </script>
     </body>

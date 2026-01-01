@@ -76,7 +76,8 @@
 <body>
     <div class="receipt-container">
         <div class="header">
-            <h1>Booking Receipt</h1>
+            <h1>Private Popcorn</h1>
+            <h2>Booking Receipt</h2>
             <p>Thank you for your purchase!</p>
         </div>
 
@@ -85,46 +86,79 @@
                 <th>Booking ID</th>
                 <td>{{ $booking->id }}</td>
             </tr>
+
+            <tr>
+                <th>Name</th>
+                <td>{{ $booking->name }}</td>
+            </tr>
+
+            <tr>
+                <th>Email</th>
+                <td>{{ $booking->email }}</td>
+            </tr>
+
+            <tr>
+                <th>Phone</th>
+                <td>{{ $booking->phone }}</td>
+            </tr>
+
             <tr>
                 <th>Theatre</th>
                 <td>{{ $booking->theatre_name }}</td>
             </tr>
+
             <tr>
                 <th>Date</th>
-                <td>{{ $booking->booking_date }}</td>
+                <td>{{ \Carbon\Carbon::parse($booking->booking_date)->format('d M Y') }}</td>
             </tr>
+
             <tr>
                 <th>Time Slot</th>
                 <td>{{ $booking->slot }}</td>
             </tr>
+
             <tr>
                 <th>Purpose</th>
                 <td>{{ $booking->purpose }}</td>
             </tr>
-            @if($booking->addon)
+
+            @if(!empty($booking->addon))
             <tr>
                 <th>Add-ons</th>
-                <td>{{ $booking->addon }}</td>
+                <td>
+                    {{ is_array($booking->addon) ? implode(', ', $booking->addon) : $booking->addon }}
+                </td>
             </tr>
             @endif
-             <tr>
+
+            <tr>
                 <th>Payment ID</th>
                 <td>{{ $booking->razorpay_payment_id }}</td>
             </tr>
-             <tr>
+
+            <tr>
                 <th>Order ID</th>
                 <td>{{ $booking->razorpay_order_id }}</td>
             </tr>
+
             <tr class="total-row">
                 <td>Total Paid</td>
-                <td class="total-amount">₹{{ number_format($booking->total_price, 2) }}</td>
+                <td class="total-amount">
+                    Rs.{{ number_format($booking->total_price, 2) }}
+                </td>
             </tr>
         </table>
 
         <div class="footer">
             <p>This is a computer-generated receipt and does not require a signature.</p>
             <p>
-                Private Popcorn | <a href="mailto:support@privatepopcorn.com">support@privatepopcorn.com</a>
+                Private Popcorn | <a href="mailto:privatepopcorn913@gmail.com">privatepopcorn913@gmail.com</a>
+            </p>
+            <p>
+                Call us: <a href="tel:+918884447958">+91 88844 47958</a>
+            </p>
+            <p>
+                &copy; {{ date('Y') }} Private Popcorn. All rights reserved.
             </p>
         </div>
     </div>

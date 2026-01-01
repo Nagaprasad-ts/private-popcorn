@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TheatreSeeder::class);
         $this->call(SlotSeeder::class);
         $this->call(EventTypeSeeder::class);
+        $this->call(AddonsTableSeeder::class);
     }
 }

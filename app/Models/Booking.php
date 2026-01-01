@@ -27,6 +27,10 @@ class Booking extends Model
         'razorpay_signature',
     ];
 
+    protected $casts = [
+        'addon' => 'array',
+    ];
+
     public function eventType()
     {
         return $this->belongsTo(EventType::class);
