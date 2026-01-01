@@ -56,9 +56,17 @@ class BookingController extends Controller
 
     public function createOrder(Request $request)
     {
+        \Log::info('CREATE ORDER HIT', $request->all());
+
         $request->validate([
             'theatre_id' => 'required|exists:theatres,id'
         ]);
+
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'contact_no' => 'required|string|min:10|max:10',
+        //     'email' => 'required|email',
+        // ]);
 
         $theatre = Theatre::findOrFail($request->theatre_id);
 
@@ -113,12 +121,18 @@ class BookingController extends Controller
 
             // Create booking
             $booking = Booking::create([
+                'name'        => $request->name,
+                'email'       => $request->email,
+                'phone'  => $request->contact_no,
+
                 'theatre_name' => $theatre->name,
+
                 'booking_date' => $request->booking_date,
                 'slot'         => $request->slot,
                 'purpose'      => $request->purpose,
                 'addon'        => $request->addon,
                 'total_price'  => $request->total_price,
+
                 'razorpay_payment_id' => $request->razorpay_payment_id,
                 'razorpay_order_id'   => $request->razorpay_order_id,
                 'razorpay_signature'  => $request->razorpay_signature,

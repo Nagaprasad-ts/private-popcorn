@@ -23,6 +23,9 @@ class BookingResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('name')->required()->maxLength(255),
+                Forms\Components\TextInput::make('email')->required()->email()->maxLength(255),
+                Forms\Components\TextInput::make('phone')->required()->maxLength(255),
                 Forms\Components\TextInput::make('theatre_name')->required()->maxLength(255),
                 Forms\Components\DatePicker::make('booking_date')->required(),
                 Forms\Components\TextInput::make('slot')->required()->maxLength(255),
@@ -39,15 +42,18 @@ class BookingResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('email')->searchable(),
+                Tables\Columns\TextColumn::make('phone')->searchable(),
                 Tables\Columns\TextColumn::make('theatre_name')->searchable(),
                 Tables\Columns\TextColumn::make('booking_date')->date()->sortable(),
                 Tables\Columns\TextColumn::make('slot')->searchable(),
                 Tables\Columns\TextColumn::make('purpose')->searchable(),
                 Tables\Columns\TextColumn::make('addon')->searchable(),
                 Tables\Columns\TextColumn::make('total_price')->money('INR')->sortable(),
-                Tables\Columns\TextColumn::make('razorpay_payment_id')->searchable(),
-                Tables\Columns\TextColumn::make('razorpay_order_id')->searchable(),
-                Tables\Columns\TextColumn::make('razorpay_signature')->searchable(),
+                Tables\Columns\TextColumn::make('razorpay_payment_id')->searchable()->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('razorpay_order_id')->searchable()->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('razorpay_signature')->searchable()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])

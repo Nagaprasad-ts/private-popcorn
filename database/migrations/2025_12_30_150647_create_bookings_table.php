@@ -15,15 +15,22 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+
             $table->string('theatre_name');
             $table->date('booking_date');
             $table->string('slot');
-            $table->string('purpose')->nullable();
+            $table->string('purpose');
             $table->string('addon')->nullable();
-            $table->decimal('total_price', 10, 2);
-            $table->string('razorpay_payment_id')->nullable();
-            $table->string('razorpay_order_id')->nullable();
-            $table->string('razorpay_signature')->nullable();
+            $table->integer('total_price');
+
+            $table->string('razorpay_payment_id');
+            $table->string('razorpay_order_id');
+            $table->string('razorpay_signature');
+
             $table->timestamps();
         });
     }

@@ -67,6 +67,22 @@
                         </div>
                     </div>
 
+                    {{-- Customer Details --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div>
+                            <label for="name" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Full Name</label>
+                            <input type="text" id="name" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
+                        </div>
+                        <div>
+                            <label for="contact_no" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Contact Number</label>
+                            <input type="text" id="contact_no" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Email Address</label>
+                            <input type="email" id="email" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
+                        </div>
+                    </div>
+
                     <!-- Purpose & Add-ons -->
                     <div class="space-y-6">
                         <div>
@@ -300,6 +316,15 @@
                 const theatre_name = selectedTheatreEl.closest('label').querySelector('span.block.text-sm').textContent; // Correctly get theatre name
                 const total_price = selectedTheatreEl.getAttribute('data-price');
 
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('contact_no').value;
+                const email = document.getElementById('email').value;
+
+                if (!name || !phone || !email) {
+                    alert('Please fill all contact details');
+                    return;
+                }
+
                 const booking_date = document.getElementById('date').value;
                 if (!booking_date) {
                     alert('Please select a date.');
@@ -355,6 +380,9 @@
                                 body: JSON.stringify({
                                     theatre_id: theatre_id,
                                     theatre_name: theatre_name,
+                                    name: name,
+                                    contact_no: phone,
+                                    email: email,
                                     booking_date: booking_date,
                                     slot: slot,
                                     purpose: purpose,

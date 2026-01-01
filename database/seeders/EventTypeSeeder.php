@@ -2,20 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
-use App\Models\EventType; // Don't forget to import the model
+use App\Models\EventType;
 
 class EventTypeSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        EventType::create(['name' => 'Movie Screening', 'description' => 'A classic movie viewing experience.']);
-        EventType::create(['name' => 'Private Event', 'description' => 'Host your own private gathering.']);
-        EventType::create(['name' => 'Corporate Event', 'description' => 'Professional meetings and presentations.']);
+        EventType::insert([
+            ['name' => 'Birthday Parties'],
+            ['name' => 'Anniversaries'],
+            ['name' => 'Kitty Parties'],
+            ['name' => 'Family Gatherings'],
+            ['name' => 'Friends Get-together'],
+            ['name' => 'Corporate Events'],
+            ['name' => 'Surprise Events'],
+            ['name' => 'Candle Light Dinner'],
+            ['name' => 'Love Proposals'],
+            ['name' => 'Bridal Shower'],
+            ['name' => 'Bride to be'],
+            ['name' => 'Date Nights'],
+        ]);
     }
 }

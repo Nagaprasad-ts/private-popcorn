@@ -12,10 +12,11 @@ use App\Models\EventType;
 class Booking extends Model
 {
     protected $fillable = [
-        'theatre_name',
         'name',
-        'contact_no',
         'email',
+        'phone',
+        'theatre_id',
+        'theatre_name',
         'booking_date',
         'slot',
         'purpose',
@@ -23,7 +24,7 @@ class Booking extends Model
         'total_price',
         'razorpay_payment_id',
         'razorpay_order_id',
-        'razorpay_signature'
+        'razorpay_signature',
     ];
 
     public function eventType()
