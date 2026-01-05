@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Receipt</title>
+    <title>Booking Receipt | Private Popcorn</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -15,14 +15,14 @@
             width: 100%;
             max-width: 800px;
             margin: 20px auto;
-            padding: 30px;
+            padding: 0 30px;
             background: #fff;
             border: 1px solid #eee;
             border-radius: 8px;
         }
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
         .header h1 {
             font-size: 28px;
@@ -60,7 +60,7 @@
         }
         .footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 10px;
             font-size: 12px;
             color: #888;
         }
@@ -142,21 +142,32 @@
             </tr>
 
             <tr class="total-row">
-                <td>Total Paid</td>
+                <td>Total Booking Amount</td>
                 <td class="total-amount">
-                    Rs.{{ number_format($booking->total_price, 2) }}
+                    Rs.{{ number_format($total_price, 2) }}
                 </td>
             </tr>
+            <tr class="total-row">
+                <td>Amount Paid</td>
+                <td class="total-amount">
+                    Rs.{{ number_format($paid_amount, 2) }}
+                </td>
+            </tr>
+            @if ($due_amount > 0)
+            <tr class="total-row">
+                <td>Amount Due</td>
+                <td class="total-amount">
+                    Rs.{{ number_format($due_amount, 2) }}
+                </td>
+            </tr>
+            @endif
         </table>
 
         <div class="footer">
             <p>This is a computer-generated receipt and does not require a signature.</p>
             <p>
-                Private Popcorn | <a href="mailto:privatepopcorn913@gmail.com">privatepopcorn913@gmail.com</a>
-            </p>
-            <p>
-                Call us: <a href="tel:+918884447958">+91 88844 47958</a>
-            </p>
+                Private Popcorn | <a href="mailto:privatepopcorn913@gmail.com">privatepopcorn913@gmail.com</a> | Call us: <a href="tel:+918884447958">+91 88844 47958</a>
+            </p>    
             <p>
                 &copy; {{ date('Y') }} Private Popcorn. All rights reserved.
             </p>

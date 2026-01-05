@@ -2,11 +2,11 @@
 <html lang="en" class="h-full bg-gray-50">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Booking | {{ config('app.name') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,17 +15,13 @@
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-        <!-- Styles / Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
     <body class="h-full font-sans antialiased text-gray-800 selection:bg-red-100">
         <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl w-full space-y-8 bg-white p-8 sm:p-12 rounded-2xl shadow-2xl border border-gray-100">
                 <!-- Header Section -->
                 <div class="text-center">
-                    <div class="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-red-50 text-red-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
-                        </svg>
+                    <div class="inline-flex items-center justify-center mb-4 text-red-600">
+                        <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="size-16"/>
                     </div>
                     <h1 class="text-4xl font-black tracking-tight text-gray-900">
                         Book Your <span class="text-red-600">Private</span> Theatre
@@ -35,10 +31,10 @@
                     </p>
                 </div>
 
-                <form class="mt-10 space-y-8" onsubmit="event.preventDefault(); pay();">
+                <form class="mt-10 space-y-8" onsubmit="event.preventDefault();">
                     <!-- Theatre Selection (Visual Radio Buttons) -->
                     <div>
-                        <label class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-4">SChoose Your Venue</label>
+                        <label class="block text-md font-bold uppercase tracking-wider text-blue-600 mb-4">Choose Your Venue</label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             @foreach ($theatres as $theatre)
                                 <label class="relative group">
@@ -77,15 +73,15 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <div>
                             <label for="name" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Full Name</label>
-                            <input type="text" id="name" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
+                            <input type="text" id="name" required message="Please enter your full name" class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
                         </div>
                         <div>
                             <label for="contact_no" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Contact Number</label>
-                            <input type="text" id="contact_no" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
+                            <input type="text" id="contact_no" required pattern="[0-9]{10}" message="Please enter a valid 10-digit phone number" class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
                         </div>
                         <div>
                             <label for="email" class="block text-xs font-bold uppercase tracking-wider text-blue-600 mb-2">Email Address</label>
-                            <input type="email" id="email" required class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
+                            <input type="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" message="Please enter a valid email address" class="block w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50 text-sm focus:bg-white transition-colors">
                         </div>
                     </div>
 
@@ -128,12 +124,17 @@
                             <span class="text-md font-bold text-gray-600">Grand Total</span>
                             <span id="total-price" class="text-3xl font-black text-gray-900">₹0</span>
                         </div>
-                        <button type="submit" class="group relative w-full flex items-center justify-center py-4 px-6 border border-transparent rounded-2xl shadow-xl text-lg font-black text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200 transition-all active:scale-[0.98]">
-                            Confirm & Pay Securely
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </button>
+                        <div class="flex flex-col md:flex-row space-y-2 md:space-x-2 items-center md:items-stretch justify-center">
+                            <button type="button" onclick="initiatePayment('partial')" class="group relative w-full flex items-center justify-center py-4 px-6 border border-transparent rounded-2xl shadow-xl text-lg font-black text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all active:scale-[0.98]">
+                                Pay 30% Advance
+                            </button>
+                            <button type="button" onclick="initiatePayment('full')" class="group relative w-full flex items-center justify-center py-4 px-6 border border-transparent rounded-2xl shadow-xl text-lg font-black text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200 transition-all active:scale-[0.98]">
+                                Confirm & Pay Securely
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                        </div>
                         <p class="mt-4 text-center text-[11px] text-gray-400 font-medium uppercase tracking-widest">
                             Secure SSL Encrypted Payment via <span class="text-blue-500">Razorpay</span>
                         </p>
@@ -227,44 +228,8 @@
                             spanStatus.classList.add('block', 'text-[10px]', 'mt-1', 'uppercase');
 
                             let isPastSlot = false;
-                            const selectedDate = new Date(bookingDate);
-                            const currentDate = new Date();
-
-                            // Normalize dates to compare only day, month, year
-                            selectedDate.setHours(0, 0, 0, 0);
-                            currentDate.setHours(0, 0, 0, 0);
-
-                            if (selectedDate.getTime() === currentDate.getTime()) {
-                                // It's today's date, check if the slot has already passed
-                                const now = new Date();
-                                const slotTimeStr = slotData.slot; // e.g., "09:00 AM"
-
-                                // Convert slot time to 24-hour format for comparison
-                                const [time, period] = slotTimeStr.split(' ');
-                                let [hours, minutes] = time.split(':').map(Number);
-
-                                if (period === 'PM' && hours !== 12) {
-                                    hours += 12;
-                                } else if (period === 'AM' && hours === 12) {
-                                    hours = 0;
-                                }
-
-                                // Create a Date object for the slot time on today's date
-                                const slotDateTime = new Date();
-                                slotDateTime.setHours(hours, minutes, 0, 0);
-
-                                if (slotDateTime.getTime() < now.getTime()) {
-                                    isPastSlot = true;
-                                }
-                            }
-
-
-                            if (isPastSlot) {
-                                input.disabled = true;
-                                div.classList.add('border-gray-200', 'bg-gray-100', 'text-gray-400', 'line-through');
-                                spanStatus.classList.add('text-gray-400');
-                                spanStatus.textContent = 'Past';
-                            } else if (!slotData.available) {
+                            
+                            if (!slotData.available) {
                                 input.disabled = true;
                                 div.classList.add(
                                     'border-red-600',    // make border red
@@ -360,7 +325,7 @@
             }
 
 
-            function pay() {
+            function initiatePayment(paymentType) {
                 const selectedTheatreEl = document.querySelector('input[name="theatre"]:checked');
                 if (!selectedTheatreEl) {
                     alert('Please select a theatre.');
@@ -397,6 +362,13 @@
                     return;
                 }
 
+                // Client-side phone number validation
+                const phonePattern = /^[0-9]{10}$/;
+                if (!phonePattern.test(phone)) {
+                    alert('Please enter a valid 10-digit phone number.');
+                    return;
+                }
+
                 const booking_date = document.getElementById('date').value;
                 if (!booking_date) {
                     alert('Please select a date.');
@@ -422,15 +394,20 @@
                     },
                     body: JSON.stringify({
                         theatre_id: theatre_id,
-                        addons: addonIds,          // send addon IDs for backend
-                        total_price: total_price   // optional: backend can recalc too
+                        addons: addonIds,
+                        payment_type: paymentType
                     })
                 })
-                .then(res => res.json())
+                .then(res => {
+                    if (!res.ok) {
+                        return res.text().then(text => { throw new Error(text) });
+                    }
+                    return res.json();
+                })
                 .then(order => {
                     var options = {
                         key: "{{ env('RAZORPAY_KEY') }}",
-                        amount: total_price * 100, // in paise
+                        amount: order.amount, // from server
                         currency: "INR",
                         order_id: order.id,
                         name: "{{ env('APP_NAME') }}",
@@ -453,7 +430,7 @@
                                     slot: slot,
                                     purpose: purpose,
                                     addon: addonNames,
-                                    total_price: total_price,
+                                    total_price: order.paid_amount, // send paid amount
                                     razorpay_payment_id: response.razorpay_payment_id,
                                     razorpay_order_id: response.razorpay_order_id,
                                     razorpay_signature: response.razorpay_signature
@@ -490,7 +467,10 @@
 
                     rzp.open();
                 })
-                .catch(() => alert('Could not initiate payment. Please try again.'));
+                .catch((error) => {
+                    console.error('Could not initiate payment. Server response:', error.message);
+                    alert('Could not initiate payment. Please try again. Check the browser console for more details.');
+                });
             }
         </script>
     </body>

@@ -36,7 +36,7 @@ class BookingController extends Controller
         $booking_date = $request->booking_date;
 
         $theatre = Theatre::findOrFail($theatre_id);
-        $allTheatreSlots = $theatre->slots()->pluck('time_slot')->toArray();
+        $allTheatreSlots = $theatre->slots()->get(['time_slot', 'start_time', 'end_time']); // Fetch end_time
 
 
         $bookedSlots = Booking::where('theatre_name', $theatre->name)
@@ -45,10 +45,25 @@ class BookingController extends Controller
             ->toArray();
 
         $availableSlots = [];
+        $timezone = 'Asia/Kolkata';
+        $currentTime = now($timezone);
+        $selectedDate = \Carbon\Carbon::parse($booking_date, $timezone);
+
         foreach ($allTheatreSlots as $slot) {
+            // Apply time-based filtering only for today's date
+            if ($selectedDate->isSameDay($currentTime)) {
+                // When parsing, specify that the time belongs to the target timezone
+                $slotEndTime = \Carbon\Carbon::parse($booking_date . ' ' . $slot->end_time, $timezone);
+
+                if ($currentTime->greaterThan($slotEndTime)) {
+                    continue; // Skip this slot if its end time has passed
+                }
+            }
+
             $availableSlots[] = [
-                'slot' => $slot,
-                'available' => !in_array($slot, $bookedSlots),
+                'slot' => $slot->time_slot,
+                'start_time' => $slot->start_time,
+                'available' => !in_array($slot->time_slot, $bookedSlots),
             ];
         }
 
@@ -63,7 +78,8 @@ class BookingController extends Controller
         $request->validate([
             'theatre_id' => 'required|exists:theatres,id',
             'addons' => 'nullable|array', // expect array of addon IDs
-            'addons.*' => 'exists:addons,id'
+            'addons.*' => 'exists:addons,id',
+            'payment_type' => 'required|in:full,partial',
         ]);
 
         $theatre = Theatre::findOrFail($request->theatre_id);
@@ -83,7 +99,12 @@ class BookingController extends Controller
             }
         }
 
-        $amountInPaise = $totalAmount * 100; // Razorpay expects amount in paise
+        $amountToPay = $totalAmount;
+        if ($request->payment_type === 'partial') {
+            $amountToPay = $totalAmount * 0.30;
+        }
+
+        $amountInPaise = round($amountToPay * 100); // Razorpay expects amount in paise
 
         $api = new \Razorpay\Api\Api(
             env('RAZORPAY_KEY'),
@@ -93,7 +114,10 @@ class BookingController extends Controller
         $order = $api->order->create([
             'amount'   => $amountInPaise,
             'currency' => 'INR',
-            'receipt'  => 'booking_' . time()
+            'receipt'  => 'booking_' . time(),
+            'notes' => [
+                'total_amount' => $totalAmount
+            ]
         ]);
 
         return response()->json([
@@ -101,13 +125,15 @@ class BookingController extends Controller
             'amount'   => $order->amount,
             'currency' => $order->currency,
             'addons'   => $selectedAddons, // optional, for debugging
-            'total'    => $totalAmount     // optional, for client-side display
+            'total'    => $totalAmount,     // optional, for client-side display
+            'paid_amount' => $amountToPay
         ]);
     }
 
     public function store(Request $request)
     {
         \Log::info('Razorpay verify payload', $request->all());
+        
         try {
             $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
 
@@ -181,8 +207,15 @@ class BookingController extends Controller
     public function downloadReceipt($id)
     {
         $booking = Booking::find($id);
+        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+        $order = $api->order->fetch($booking->razorpay_order_id);
+
+        $total_price = $order->notes['total_amount'] ?? $booking->total_price;
+        $paid_amount = $booking->total_price;
+        $due_amount = $total_price - $paid_amount;
+
         $fileName = 'receipt-' . $booking->razorpay_payment_id . '.pdf';
-        $pdf = Pdf::loadView('receipt', compact('booking'));
+        $pdf = Pdf::loadView('receipt', compact('booking', 'total_price', 'paid_amount', 'due_amount'));
         return $pdf->download($fileName);
     }
 }
