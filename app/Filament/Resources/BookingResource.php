@@ -32,9 +32,9 @@ class BookingResource extends Resource
                 Forms\Components\TextInput::make('purpose')->required()->maxLength(255),
                 Forms\Components\TextInput::make('addon')->maxLength(255),
                 Forms\Components\TextInput::make('total_price')->required()->numeric(),
-                Forms\Components\TextInput::make('razorpay_payment_id')->maxLength(255),
-                Forms\Components\TextInput::make('razorpay_order_id')->maxLength(255),
-                Forms\Components\TextInput::make('razorpay_signature')->maxLength(255),
+                Forms\Components\TextInput::make('razorpay_payment_id')->maxLength(255)->disabled(),
+                Forms\Components\TextInput::make('razorpay_order_id')->maxLength(255)->disabled(),
+                Forms\Components\TextInput::make('razorpay_signature')->maxLength(255)->disabled(),
             ]);
     }
 
