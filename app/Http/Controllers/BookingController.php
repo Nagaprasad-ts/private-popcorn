@@ -101,7 +101,7 @@ class BookingController extends Controller
 
         $amountToPay = $totalAmount;
         if ($request->payment_type === 'partial') {
-            $amountToPay = $totalAmount * 0.30;
+            $amountToPay = 300; // Partial payment of ₹300
         }
 
         $amountInPaise = round($amountToPay * 100); // Razorpay expects amount in paise

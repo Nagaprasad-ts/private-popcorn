@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.name') }} | Privacy Policy</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -192,545 +192,354 @@
         <script src="https://unpkg.com/lucide@latest"></script>
     </head>
     <body class="overflow-x-hidden">
-    <!-- Navigation -->
-    <nav
-      id="navbar"
-      class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white"
-    >
-      <div class="flex items-center">
-        <span class="text-2xl font-light tracking-[0.3em] uppercase serif">
-            <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="h-10 inline-block" />
-        </span>
-      </div>
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white">
+          <div class="flex items-center">
+            <span class="text-2xl font-light tracking-[0.3em] uppercase serif">
+                <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="h-10 inline-block" />
+            </span>
+          </div>
+    
+          <!-- Right Aligned Nav Items -->
+          <div class="flex items-center space-x-10">
+            <div class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light">
+              <a href="/" class="hover:text-gold transition-colors">Home</a>
+              <a href="/#services" class="hover:text-gold transition-colors">Packages</a>
+              <a href="/#gallery" class="hover:text-gold transition-colors">Gallery</a>
+            </div>
+    
+            <a href="/booking" class="bg-gold text-black px-8 py-3 text-[14px] uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-semibold shadow-lg border border-red-500 hover:border-black-500 rounded-lg">
+              Book Now
+            </a>
+          </div>
+        </nav>
 
-      <!-- Right Aligned Nav Items -->
-      <div class="flex items-center space-x-10">
-        <div
-          class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light"
-        >
-          <a href="#services" class="hover:text-gold transition-colors"
-            >Packages</a
-          >
-          <a href="#gallery" class="hover:text-gold transition-colors"
-            >Gallery</a
-          >
-        </div>
+        <main class="flex-grow pt-32">
+            <div class="p-8">
+                <article>
+                    <header class="mb-6">
+                        <h1 class="text-3xl text-red-500 font-extrabold">Privacy Policy</h1>
+                        <p class="text-sm text-gray-300 mt-1">
+                        Last updated: <span class="font-medium">Jan 11, 2026</span>
+                        </p>
+                        <p class="mt-4 text-gray-300">
+                        This Privacy Policy describes how <strong>Private Popcorn</strong> ("we", "us",
+                        "our") collects, uses, discloses, and protects personal information of
+                        visitors and users ("you") of <a href="https://privatepopcorn.com" class="text-indigo-400 hover:underline">https://privatepopcorn.com</a> (the
+                        "Site") and our Services. By accessing or using the Site or Services, you
+                        consent to the practices described here.
+                        </p>
+                    </header>
+    
+                    <nav class="mb-8 text-gray-300">
+                        <h2 class="text-xl font-semibold">Contents</h2>
+                        <ol class="list-decimal list-inside ml-0 text-sm">
+                        <li><a href="#information-we-collect" class="hover:underline">1. Information We Collect</a></li>
+                        <li><a href="#how-we-use-your-information" class="hover:underline">2. How We Use Your Information</a></li>
+                        <li><a href="#cookies-tracking" class="hover:underline">3. Cookies & Tracking</a></li>
+                        <li><a href="#disclosure" class="hover:underline">4. Disclosure of Your Information</a></li>
+                        <li><a href="#security-retention" class="hover:underline">5. Data Security & Retention</a></li>
+                        <li><a href="#children" class="hover:underline">6. Children’s Privacy</a></li>
+                        <li><a href="#rights-choices" class="hover:underline">7. Your Rights & Choices</a></li>
+                        <li><a href="#international-transfers" class="hover:underline">8. International Transfers</a></li>
+                        <li><a href="#changes" class="hover:underline">9. Changes to This Privacy Policy</a></li>
+                        <li><a href="#contact" class="hover:underline">10. Contact Us</a></li>
+                        </ol>
+                    </nav>
+    
+                    <section id="information-we-collect" class="mt-6 text-gray-300">
+                        <h2 class="text-2xl font-semibold">1. Information We Collect</h2>
+    
+                        <h3 class="mt-4 font-semibold">(a) Information you provide to us</h3>
+                        <ul class="list-disc list-inside mt-2">
+                        <li>
+                            <strong>Contact & profile information:</strong> name, email address, phone
+                            number, address, event preferences, etc., which you submit when making
+                            inquiries, bookings, or communicating with us.
+                        </li>
+                        <li class="mt-2">
+                            <strong>Payment information:</strong> details necessary to process payments
+                            (e.g. credit card, UPI, or other payment method). (Note: we do not store
+                            full payment card numbers; payment processing is handled by secure
+                            third‑party payment gateways.)
+                        </li>
+                        <li class="mt-2">
+                            <strong>Communications:</strong> any messages, feedback, reviews, or support
+                            requests you send us.
+                        </li>
+                        </ul>
+    
+                        <h3 class="mt-4 font-semibold">(b) Information we collect automatically</h3>
+                        <ul class="list-disc list-inside mt-2">
+                        <li>
+                            <strong>Usage data:</strong> your IP address, browser type and version,
+                            operating system, device identifiers, pages you visit, time spent, referral
+                            URLs, navigation paths, click data.
+                        </li>
+                        <li class="mt-2">
+                            <strong>Cookies & similar technologies:</strong> we and our third‑party
+                            partners may use cookies, web beacons, local storage, and similar tracking
+                            technologies to collect information and track usage.
+                        </li>
+                        </ul>
+    
+                        <h3 class="mt-4 font-semibold">(c) Third‑party sources</h3>
+                        <p class="mt-2">
+                        If you log in or connect via social media or other third‑party accounts, we
+                        may collect information from those services (subject to their permissions).
+                        Analytics, advertising, or marketing service providers may share aggregated
+                        or anonymized data with us.
+                        </p>
+                    </section>
+    
+                    <section id="how-we-use-your-information" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">2. How We Use Your Information</h2>
+                        <p class="mt-3">We use personal information for purposes including, but not limited to:</p>
+                        <ul class="list-disc list-inside mt-2">
+                        <li>To provide, operate, and maintain the Site and Services</li>
+                        <li>To process and fulfil Bookings, payments, refunds, cancellations</li>
+                        <li>To communicate with you, respond to inquiries, send confirmations, reminders, updates</li>
+                        <li>To personalize your experience, recommend packages or events</li>
+                        <li>To improve, maintain, and analyze performance, usage, and features</li>
+                        <li>To monitor and prevent fraud, misuse, security incidents</li>
+                        <li>To comply with legal obligations, dispute resolution, enforcing our Terms</li>
+                        <li>For marketing, promotional activities, newsletters, offers (where permitted)</li>
+                        <li>To anonymize or aggregate data for analytics or research</li>
+                        </ul>
+                    </section>
+    
+                    <section id="cookies-tracking" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">3. Cookies & Tracking</h2>
+                        <p class="mt-3">
+                        We may use cookies and similar technologies to:
+                        </p>
+                        <ul class="list-disc list-inside mt-2">
+                        <li>Recognize you when you return to the Site</li>
+                        <li>Store your preferences</li>
+                        <li>Collect information about your browsing behavior</li>
+                        <li>Serve targeted or contextual advertising (where applicable)</li>
+                        <li>Understand traffic sources and site performance</li>
+                        </ul>
+                        <p class="mt-3">You can usually configure your browser to refuse or block cookies, but doing so may impact functionalities of the Site.</p>
+                    </section>
+    
+                    <section id="disclosure" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">4. Disclosure of Your Information</h2>
+                        <p class="mt-3">We may share your personal data in the following circumstances:</p>
+                        <ul class="list-disc list-inside mt-2">
+                        <li>
+                            <strong>With service providers:</strong> vendors, contractors, agents who
+                            assist us (e.g. payment processors, hosting providers, email delivery,
+                            analytics, marketing) under confidentiality obligations
+                        </li>
+                        <li class="mt-2">
+                            <strong>For legal reasons:</strong> where required by law, regulation, legal
+                            process, court order, or governmental request
+                        </li>
+                        <li class="mt-2">
+                            <strong>To protect rights and safety:</strong> to enforce our Terms, defend
+                            rights, protect safety of users or public, prevent fraud or misuse
+                        </li>
+                        <li class="mt-2">
+                            <strong>Business transfers:</strong> in connection with a merger, acquisition,
+                            reorganization, sale, or transfer of assets—your information may be among
+                            the transferred assets
+                        </li>
+                        <li class="mt-2">
+                            <strong>With your consent:</strong> if you explicitly authorize us to share
+                            with third parties for marketing or other purposes
+                        </li>
+                        </ul>
+                        <p class="mt-3"><strong>We do not sell your personal data to third parties.</strong></p>
+                    </section>
+    
+                    <section id="security-retention" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">5. Data Security & Retention</h2>
+                        <p class="mt-3">We implement reasonable technical, administrative, and physical security measures to protect personal data from unauthorized access, use, or disclosure.</p>
+                        <p class="mt-3">However, no method of transmission or storage is 100% secure; we cannot guarantee absolute security.</p>
+                        <p class="mt-3">We retain personal data only as long as necessary to fulfill purposes laid out in this policy, or as required by law. After retention period, we will delete or anonymize your data or securely archive it if required.</p>
+                    </section>
+    
+                    <section id="children" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">6. Children’s Privacy</h2>
+                        <p class="mt-3">Our Site and Services are not intended for children under <strong>13</strong>. We do not knowingly collect personal data from minors. If we learn that we have collected data from a child under the applicable age, we will delete it promptly.</p>
+                    </section>
+    
+                    <section id="rights-choices" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">7. Your Rights &amp; Choices</h2>
+                        <p class="mt-3">Depending on applicable law, you may have the following rights:</p>
+                        <ul class="list-disc list-inside mt-2">
+                        <li>Access: request a copy of personal data we hold about you</li>
+                        <li>Correction: ask us to correct or update inaccurate or incomplete data</li>
+                        <li>Deletion / Erasure: request deletion of your data (subject to legal obligations)</li>
+                        <li>Restriction: request us to restrict processing in certain circumstances</li>
+                        <li>Portability: request transfer of your data to another service provider</li>
+                        <li>Objection: object to certain processing (e.g. marketing)</li>
+                        <li>Withdrawal of consent (where processing is consent-based), though it won’t affect earlier lawful processing</li>
+                        </ul>
+                        <p class="mt-3">To exercise these rights, contact us at the email given below. We may require identity verification before processing such requests.</p>
+                    </section>
+    
+                    <section id="international-transfers" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">8. International Transfers</h2>
+                        <p class="mt-3">If your data is transferred outside your country (e.g. to service providers in other jurisdictions), we will ensure appropriate safeguards are in place (e.g. standard contractual clauses, data protection standards) to protect your data.</p>
+                    </section>
+    
+                    <section id="changes" class="mt-8 text-gray-300">
+                        <h2 class="text-2xl font-semibold">9. Changes to This Privacy Policy</h2>
+                        <p class="mt-3">We may update this Privacy Policy from time to time. We will post the “Last updated” date and, where required by law, notify you of material changes (e.g. by email). Your continued use of the Site after those changes constitutes acceptance of the new policy.</p>
+                    </section>
+    
+                    <section id="contact" class="mt-8 mb-6 text-gray-300">
+                        <h2 class="text-2xl font-semibold">10. Contact Us</h2>
+                        <p class="mt-3">If you have questions, concerns, or requests about this Privacy Policy or your data, please contact:</p>
+                        <address class="not-italic mt-3 text-sm leading-relaxed">
+                        <div><strong>Email:</strong> <a href="mailto:privatepopcorn913@gmail.com" class="text-indigo-400 hover:underline">privatepopcorn913@gmail.com</a></div>
+                        <div class="mt-1"><strong>Address:</strong> 3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore</div>
+                        <div class="mt-1"><strong>Phone:</strong> 8884447958</div>
+                        </address>
+                    </section>
+    
+                    <footer class="text-xs text-gray-400 mt-6 pt-6 border-t border-gray-700">
+                        <p>© 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a></p>
+                    </footer>
+                </article>
+            </div>
+        </main>
 
-        <a href="/booking" class="bg-gold text-black px-8 py-3 text-[14px] uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-semibold shadow-lg border border-red-500 hover:border-black-500 rounded-lg">
-          Book Now
+        <!-- WhatsApp Floating Button -->
+        <a href="#" id="whatsappLink" class="whatsapp-float" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
         </a>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header
-      class="relative h-screen w-full flex items-center justify-center overflow-hidden"
-    >
-      <img
-        src="{{ asset('storage/image3.jpg') }}"
-        alt="Luxury Theater"
-        class="absolute inset-0 w-full h-full object-cover scale-110 animate-slow-zoom opacity-60"
-      />
-      <div class="absolute inset-0 hero-overlay"></div>
-
-      <div class="relative text-center text-white px-4 mt-20">
-        <h1 class="text-4xl md:text-8xl font-light mb-5 serif fade-in">
-          A Space for every <br />
-          kind of moment.
-        </h1>
-        <p
-          class="text-gold uppercase text-center px-8 tracking-[0.1em] leading-[2.2] mb-4 text-xs md:text-sm fade-in"
-        >
-          Experience unparalleled luxury and create timeless memories at Private
-          <br />
-          Popcorn. Your exclusive event starts here.
-        </p>
-        <div class="flex justify-center items-center fade-in">
-          <a
-            href="/booking"
-            class="border border-white/30 m-4 px-10 py-4 hover:bg-white hover:text-black transition-all duration-500 uppercase text-xs tracking-[0.2em]"
-          >
-            Book Your Moment
-          </a>
-          <a
-            href="#about"
-            class="border border-white/30 px-10 py-4 m-4 hover:bg-white hover:text-black transition-all duration-500 uppercase text-xs tracking-[0.2em]"
-          >
-            View Packages
-          </a>
-        </div>
-      </div>
-
-      <div
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50"
-      >
-        <i data-lucide="chevron-down"></i>
-      </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="py-32 px-8 max-w-7xl mx-auto bg-[#0d0d0d]">
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest block mb-4"
-            >About Us</span
-          >
-          <h2 class="text-5xl serif mb-6">Welcome to Private Popcorn</h2>
-          <p class="text-gray-300 leading-relaxed mb-8 font-light text-lg">
-            Bangalore’s premier private theatre destination for unforgettable
-            celebrations. Whether it’s a birthday, anniversary, romantic date
-            night, or a special surprise, enjoy a luxurious private screening
-            experience designed to turn every moment into a memorable cinematic
-            celebration just for you.
-          </p>
-          <a href="/booking" class="text-xs font-semibold uppercase tracking-[0.2em] border-b-2 border-gold pb-2 hover:text-gold transition-all">
-            Explore our Services
-          </a>
-        </div>
-        <div class="relative fade-in">
-          <div
-            class="aspect-[1/1] overflow-hidden rounded-sm transition-all duration-1000"
-          >
-            <img
-              src="{{ asset('storage/image1.jpg') }}"
-              alt="Cinema Interior"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <div
-            class="absolute -bottom-8 -right-8 w-64 h-80 hidden lg:block border-8 border-[#1a1a1a] shadow-2xl overflow-hidden rounded-sm"
-          >
-            <img
-              src="{{ asset('storage/image5.jpg') }}"
-              alt="Detail"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Updated Services Section -->
-    <section id="services" class="bg-[#0d0d0d] py-12 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-8">
-        <div
-          class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
-        >
-          <div class="max-w-xl fade-in">
-            <span class="text-gold text-sm uppercase tracking-widest"
-              >Our Services</span
-            >
-            <h2 class="text-5xl serif mt-2">Exclusive Celebrations</h2>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Service Card 1 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image6.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Birthday Party
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Bring your birthday celebrations to life with a private
-                    screening experience. Enjoy your favorite films in an
-                    intimate setting, complete with personalized decorations,
-                    gourmet snacks, and more.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+    
+        <!-- Footer -->
+        <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+                <div class="md:col-span-1">
+                <img src="{{ asset('storage/logo.jpg') }}" alt="" />
+                <p class="text-gray-200 py-2 text-sm font-light leading-relaxed">
+                    Crafting unforgettable memories in our exclusive private theaters.
+                </p>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service Card 2 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image4.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Anniversary
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Celebrate your love story with an unforgettable anniversary
-                    at Private Popcorn. Enjoy a romantic private screening,
-                    complete with champagne, gourmet treats, and personalized
-                    touches to make your day truly special.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+                <div>
+                <h5
+                    class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
+                >
+                    Quick Links
+                </h5>
+                <ul class="text-gray-200 text-sm font-light space-y-5">
+                    <li>
+                    <a href="/privacy-policy" class="hover:text-gold transition-colors"
+                        >Privacy Policy</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/terms-and-conditions" class="hover:text-gold transition-colors"
+                        >Terms & Conditions</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/cancellation-and-refund" class="hover:text-gold transition-colors"
+                        >Cancellation & Refund</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/shipping" class="hover:text-gold transition-colors"
+                        >Shipping Policy</a
+                    >
+                    </li>
+                </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service Card 3 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image7.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Friends Hangout
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Bring your birthday celebrations to life with a private
-                    screening experience. Enjoy your favorite films in an
-                    intimate setting, complete with personalized decorations,
-                    gourmet snacks, and more.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+                <div>
+                <h5
+                    class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
+                >
+                    Contact Us
+                </h5>
+                <p class="text-gray-200 text-sm font-light mb-4">8884447958</p>
+                <p class="text-gray-200 text-sm font-light mb-4">
+                    privatepopcorn913@gmail.com
+                </p>
+                <p class="text-200 text-sm font-light mb-4">
+                    3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore - 560056
+                </p>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Suites Section -->
-    <section id="suites" class="bg-[#0d0d0d] py-32 px-8">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest"
-            >Our Theatres</span
-          >
-          <h2 class="text-5xl serif mt-2">Designed for Your Special Moments</h2>
-          <p
-            class="text-gold uppercase tracking-[0.1em] leading-[1.8] mt-4 mb-4 text-sm fade-in"
-          >
-            Choose the perfect space for your celebration. Each package is
-            designed to provide<br />
-            a unique and unforgettable experience.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Suite 1 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image6.jpg') }}"
-                alt="The Onyx"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Two
-              </div>
+            <div class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center" >
+                <p class="text-gray-200 text-[14px] uppercase tracking-widest">
+                © 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a>
+                </p>
+                <div class="flex space-x-6 text-gray-500">
+                <a href="https://www.instagram.com/private_popcornofficial/" class="hover:text-gold transition-colors">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                </div>
             </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Couple Nest</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                An intimate, romantic setting perfect for anniversaries,
-                proposals, or a special date night.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
+        </footer>
 
-          <!-- Suite 2 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-            style="transition-delay: 200ms"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image7.jpg') }}"
-                alt="The Grand"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Friends
-              </div>
-            </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Friends Den</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                The ultimate hangout for birthdays, reunions, or a fun
-                get-together with your squad.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
+        <script>
+        // Configuration
+        const phoneNumber = "8884447958"; // Replace with your international format number (no + or spaces)
+        const welcomeMessage = "Hello! I have a question about your services.";
 
-          <!-- Suite 3 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-            style="transition-delay: 400ms"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image3.jpg') }}"
-                alt="Noir"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Family
-              </div>
-            </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Fam Jam</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                Create lasting memories with loved ones in a comfortable,
-                family-friendly environment.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        window.onload = function () {
+            const waLink = document.getElementById("whatsappLink");
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-18 px-4 bg-[#0d0d0d]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest"
-            >Our Gallery</span
-          >
-          <h2 class="text-5xl serif mt-2">Glimpses of Celebrations</h2>
-        </div>
+            // Encode the message for the URL
+            const encodedMessage = encodeURIComponent(welcomeMessage);
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="md:col-span-2 md:row-span-2 gallery-item fade-in">
-            <img
-              src="{{ asset('storage/image3.jpg') }}"
-              class="w-full h-full object-cover rounded-sm shadow-2xl"
-              alt="Theater Room"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 100ms">
-            <img
-              src="{{ asset('storage/image6.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Cocktail"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 200ms">
-            <img
-              src="{{ asset('storage/image7.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Projector"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 300ms">
-            <img
-              src="{{ asset('storage/image4.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Audio Booth"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 400ms">
-            <img
-              src="{{ asset('storage/image1.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Martini"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+            // Create the official WhatsApp API link
+            // Using 'https://wa.me/' is the modern, recommended way
+            waLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    <!-- WhatsApp Floating Button -->
-    <a href="#" id="whatsappLink" class="whatsapp-float" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+            console.log("WhatsApp link initialized for:", phoneNumber);
+        };
+        </script>
 
-    <!-- Footer -->
-    <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
-      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
-        <div class="md:col-span-1">
-          <img src="{{ asset('storage/logo.jpg') }}" alt="" />
-          <p class="text-gray-200 py-2 text-sm font-light leading-relaxed">
-            Crafting unforgettable memories in our exclusive private theaters.
-          </p>
-        </div>
-        <div>
-          <h5
-            class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
-          >
-            Quick Links
-          </h5>
-          <ul class="text-gray-200 text-sm font-light space-y-5">
-            <li>
-              <a href="/privacy-policy" class="hover:text-gold transition-colors"
-                >Privacy Policy</a
-              >
-            </li>
-            <li>
-              <a href="/terms-and-conditions" class="hover:text-gold transition-colors"
-                >Terms & Conditions</a
-              >
-            </li>
-            <li>
-              <a href="/cancellation-and-refund" class="hover:text-gold transition-colors"
-                >Cancellation & Refund</a
-              >
-            </li>
-            <li>
-              <a href="/shipping" class="hover:text-gold transition-colors"
-                >Shipping Policy</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h5
-            class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
-          >
-            Contact Us
-          </h5>
-          <p class="text-gray-200 text-sm font-light mb-4">8884447958</p>
-          <p class="text-gray-200 text-sm font-light mb-4">
-            privatepopcorn913@gmail.com
-          </p>
-          <p class="text-gray-200 text-sm font-light mb-4">
-            3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore - 560056
-          </p>
-        </div>
-      </div>
-      <div
-        class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center"
-      >
-        <p class="text-gray-200 text-[14px] uppercase tracking-widest">
-          © 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a>
-        </p>
-        <div class="flex space-x-6 text-gray-500">
-          <a href="https://www.instagram.com/private_popcornofficial/" class="hover:text-gold transition-colors">
-            <i data-lucide="instagram" class="w-4 h-4"></i>
-          </a>
-        </div>
-      </div>
-    </footer>
+        <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-    <script>
-      // Configuration
-      const phoneNumber = "8884447958"; // Replace with your international format number (no + or spaces)
-      const welcomeMessage = "Hello! I have a question about your services.";
-
-      window.onload = function () {
-        const waLink = document.getElementById("whatsappLink");
-
-        // Encode the message for the URL
-        const encodedMessage = encodeURIComponent(welcomeMessage);
-
-        // Create the official WhatsApp API link
-        // Using 'https://wa.me/' is the modern, recommended way
-        waLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-        console.log("WhatsApp link initialized for:", phoneNumber);
-      };
-    </script>
-
-    <script>
-      // Initialize Lucide Icons
-      lucide.createIcons();
-
-      // Navbar Scroll Effect
-      window.addEventListener("scroll", () => {
-        const nav = document.getElementById("navbar");
-        if (window.scrollY > 80) {
-          nav.classList.add("nav-scrolled");
-        } else {
-          nav.classList.remove("nav-scrolled");
-        }
-      });
-
-      // Intersection Observer for Animations
-      const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+        // Navbar Scroll Effect
+        window.addEventListener("scroll", () => {
+            const nav = document.getElementById("navbar");
+            if (window.scrollY > 80) {
+            nav.classList.add("nav-scrolled");
+            } else {
+            nav.classList.remove("nav-scrolled");
+            }
         });
-      }, observerOptions);
 
-      document.querySelectorAll(".fade-in").forEach((el) => {
-        observer.observe(el);
-      });
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px",
+        };
 
-      // Add slow zoom animation dynamically
-      const style = document.createElement("style");
-      style.innerHTML = `
-            @keyframes slowZoom {
-                0% { transform: scale(1); }
-                100% { transform: scale(1.15); }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
             }
-            .animate-slow-zoom {
-                animation: slowZoom 25s infinite alternate ease-in-out;
-            }
-        `;
-      document.head.appendChild(style);
-    </script>
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".fade-in").forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Add slow zoom animation dynamically
+        const style = document.createElement("style");
+        style.innerHTML = `
+                @keyframes slowZoom {
+                    0% { transform: scale(1); }
+                    100% { transform: scale(1.15); }
+                }
+                .animate-slow-zoom {
+                    animation: slowZoom 25s infinite alternate ease-in-out;
+                }
+            `;
+        document.head.appendChild(style);
+        </script>
   </body>
 </html>
-

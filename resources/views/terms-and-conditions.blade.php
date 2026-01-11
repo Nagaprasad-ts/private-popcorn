@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.name') }} | Terms & Conditions</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -184,7 +184,7 @@
                 height: 50px;
                 }
             }
-            </style>
+        </style>
 
         {{-- Scripts --}}
         <link rel="icon" type="image/png" sizes="32x32" href="images/logo1.jpg" />
@@ -192,545 +192,284 @@
         <script src="https://unpkg.com/lucide@latest"></script>
     </head>
     <body class="overflow-x-hidden">
-    <!-- Navigation -->
-    <nav
-      id="navbar"
-      class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white"
-    >
-      <div class="flex items-center">
-        <span class="text-2xl font-light tracking-[0.3em] uppercase serif">
-            <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="h-10 inline-block" />
-        </span>
-      </div>
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white">
+          <div class="flex items-center">
+            <span class="text-2xl font-light tracking-[0.3em] uppercase serif">
+                <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="h-10 inline-block" />
+            </span>
+          </div>
+    
+          <!-- Right Aligned Nav Items -->
+          <div class="flex items-center space-x-10">
+            <div class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light">
+              <a href="/" class="hover:text-gold transition-colors">Home</a>
+              <a href="/#services" class="hover:text-gold transition-colors">Packages</a>
+              <a href="/#gallery" class="hover:text-gold transition-colors">Gallery</a>
+            </div>
+    
+            <a href="/booking" class="bg-gold text-black px-8 py-3 text-[14px] uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-semibold shadow-lg border border-red-500 hover:border-black-500 rounded-lg">
+              Book Now
+            </a>
+          </div>
+        </nav>
 
-      <!-- Right Aligned Nav Items -->
-      <div class="flex items-center space-x-10">
-        <div
-          class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light"
-        >
-          <a href="#services" class="hover:text-gold transition-colors"
-            >Packages</a
-          >
-          <a href="#gallery" class="hover:text-gold transition-colors"
-            >Gallery</a
-          >
-        </div>
+        <main class="flex-grow pt-32">
+            <div class="p-8">
+              <article>
+                <header class="mb-6">
+                  <h1 class="text-3xl text-red-500 font-extrabold">TERMS & CONDITIONS</h1>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                    Last updated: <span class="font-medium">Jan 11, 2026</span>
+                  </p>
+                  <p class="mt-4 text-gray-300">
+                    These Terms & Conditions (“Terms”) govern your use of the website <a href="https://privatepopcorn.com/" class="text-indigo-400 hover:underline">https://privatepopcorn.com/</a>
+                    (the “Site”) and any services offered through the Site (collectively, the “Services”). By accessing or using the Site or the Services, you agree to be bound by these Terms. If you disagree with any part of these Terms, do not use the Site or Services.
+                  </p>
+                </header>
 
-        <a href="/booking" class="bg-gold text-black px-8 py-3 text-[14px] uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-semibold shadow-lg border border-red-500 hover:border-black-500 rounded-lg">
-          Book Now
+                <section class="space-y-6 text-gray-300">
+                  <h2 class="text-2xl font-semibold">1. Definitions</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>
+                      <span class="font-semibold">“We”, “us”, “our”, “Private Popcorn”</span> means the operator of the Site and provider of Services.
+                    </li>
+                    <li>
+                      <span class="font-semibold">“You”, “your”, “User”</span> means any person who accesses the Site or uses the Services.
+                    </li>
+                    <li>
+                      <span class="font-semibold">“Booking”</span> means any reservation or order placed for private theater events, packages, or associated services offered via the Site.
+                    </li>
+                    <li>
+                      <span class="font-semibold">“Content”</span> means text, images, video, audio, graphics, and other materials provided via the Site.
+                    </li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">2. Eligibility</h2>
+                  <p class="mt-4">
+                    You must be of legal age (as per applicable law) to enter into binding contracts to use the Site or make Bookings. If you are using the Site on behalf of an organization, you represent and warrant you have the authority to bind that organization to these Terms.
+                  </p>
+
+                  <h2 class="text-2xl font-semibold pt-4">3. Use of the Website</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>You agree to use the Site only for lawful purposes and in accordance with these Terms.</li>
+                    <li>You shall not use the Site in any way that could damage, disable, overburden, or impair its functioning.</li>
+                    <li>You may not use automated systems, bots, scraping, or other means to access or extract data from the Site without our express permission.</li>
+                    <li>You may not attempt to interfere with security-related features of the Site.</li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">4. Booking, Payment & Cancellations</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>All bookings placed via the Site are subject to our acceptance. We reserve the right to accept or reject any Booking in our sole discretion.</li>
+                    <li>The price quoted for a package or service is inclusive/exclusive of applicable taxes, as specified at time of booking.</li>
+                    <li>Payment terms (advance deposit, full payment, acceptable modes) will be as described at the time of Booking.</li>
+                    <li>If you cancel a confirmed Booking, any refund, forfeiture, or rescheduling policy will be as per our cancellation policy (which will be linked or described).</li>
+                    <li>We reserve the right to cancel or reschedule bookings due to force majeure, technical issues, or other exigent circumstances. In such cases, we will notify you and offer an alternate date or refund (as applicable).</li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">5. User Obligations & Conduct</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>You shall provide accurate, current, and complete information when making a Booking (name, contact, event details, etc.).</li>
+                    <li>You are responsible for all acts or omissions under your account.</li>
+                    <li>You shall respect our property, premises, and staff during your event, and comply with all applicable rules, laws, and regulations.</li>
+                    <li>You shall not use the venue or Services for illegal or unauthorized purposes (e.g. violation of copyright, noise regulations, public nuisance).</li>
+                    <li>You may be liable for damage caused to venue, furnishings, or equipment during your event.</li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">6. Intellectual Property</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>All Content on the Site (text, logos, images, brand names, etc.) is owned or licensed by us and protected by copyright, trademark, and other laws.</li>
+                    <li>You may not copy, reproduce, distribute, publicly display, or create derivative works from our Content without prior written permission.</li>
+                    <li>If you submit any suggestions, feedback, or other content to us, you grant us a non-exclusive, irrevocable, perpetual, royalty-free license to use, modify, or distribute it.</li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">7. Disclaimers & Limitation of Liability</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>The Site and Services are provided “as is” and “as available,” without warranties of any kind, express or implied.</li>
+                    <li>We do not guarantee that the Site will be uninterrupted, error-free, secure, or free of viruses.</li>
+                    <li>To the maximum extent permitted by law, in no event shall we (or our affiliates, officers, employees) be liable for any indirect, incidental, consequential, punitive, or special damages arising out of or relating to your use or inability to use the Site or Services, even if advised of the possibility of such damages.</li>
+                    <li>Our total aggregate liability for direct damages shall in no event exceed the amount you paid to us for the particular Booking giving rise to the claim (or a lesser amount as required by law).</li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">8. Indemnification</h2>
+                  <p class="mt-4">
+                    You agree to indemnify, defend, and hold harmless Private Popcorn (and its officers, directors, employees, agents) from and against any and all claims, liabilities, losses, damages, costs, and expenses (including legal fees) arising from (a) your breach of these Terms, (b) your use of the Site or Services, or (c) any violation of applicable laws by you.
+                  </p>
+
+                  <h2 class="text-2xl font-semibold pt-4">9. Third-Party Links & Services</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>The Site may contain links to third-party websites or services, which are not operated or controlled by us. We are not responsible for their content or practices.</li>
+                    <li>If you access any third-party site, you do so at your own risk, and you agree that we are not liable for any damages or losses arising out of your use thereof.</li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">10. Modifications</h2>
+                  <p class="mt-4">
+                    We may revise these Terms from time to time. The “Last updated” date will indicate when changes were made. Your continued use of the Site or Services after revisions constitutes acceptance of the modified Terms.
+                  </p>
+
+                  <h2 class="text-2xl font-semibold pt-4">11. Governing Law & Dispute Resolution</h2>
+                  <ul class="list-disc list-inside mt-2 space-y-2">
+                    <li>These Terms shall be governed by and construed in accordance with the laws of Karnataka/India, India.</li>
+                    <li>Any dispute arising out of or relating to these Terms or your use of the Site shall be resolved by binding arbitration (or courts, depending on your preference and legality) in Bangalore, unless otherwise agreed in writing.</li>
+                    <li>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</li>
+                  </ul>
+
+                  <h2 class="text-2xl font-semibold pt-4">12. Severability & Waiver</h2>
+                  <p class="mt-4">
+                    If a court deems any provision of these Terms invalid or unenforceable, that provision will be severed and the remaining provisions will continue in full force and effect. No waiver by us of any breach or right shall be considered a waiver of any other breach or right.
+                  </p>
+
+                  <h2 class="text-2xl font-semibold pt-4">13. Contact Information</h2>
+                  <p class="mt-4">
+                    If you have questions about these Terms, please contact us at:
+                  </p>
+                  <address class="not-italic mt-3 text-sm leading-relaxed">
+                    <div><strong class="text-white">Email:</strong> <a href="mailto:privatepopcorn913@gmail.com" class="text-indigo-400 hover:underline">privatepopcorn913@gmail.com</a></div>
+                    <div class="mt-1"><strong class="text-white">Address:</strong> 3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore</div>
+                    <div class="mt-1"><strong class="text-white">Phone:</strong> <a href="tel:8884447958" class="text-indigo-400 hover:underline">8884447958</a></div>
+                  </address>
+                </section>
+
+                <footer class="text-xs text-gray-400 mt-6 pt-6 border-t border-gray-700">
+                  <p>© 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a></p>
+                </footer>
+              </article>
+            </div>
+        </main>
+
+        <!-- WhatsApp Floating Button -->
+        <a href="#" id="whatsappLink" class="whatsapp-float" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
         </a>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header
-      class="relative h-screen w-full flex items-center justify-center overflow-hidden"
-    >
-      <img
-        src="{{ asset('storage/image3.jpg') }}"
-        alt="Luxury Theater"
-        class="absolute inset-0 w-full h-full object-cover scale-110 animate-slow-zoom opacity-60"
-      />
-      <div class="absolute inset-0 hero-overlay"></div>
-
-      <div class="relative text-center text-white px-4 mt-20">
-        <h1 class="text-4xl md:text-8xl font-light mb-5 serif fade-in">
-          A Space for every <br />
-          kind of moment.
-        </h1>
-        <p
-          class="text-gold uppercase text-center px-8 tracking-[0.1em] leading-[2.2] mb-4 text-xs md:text-sm fade-in"
-        >
-          Experience unparalleled luxury and create timeless memories at Private
-          <br />
-          Popcorn. Your exclusive event starts here.
-        </p>
-        <div class="flex justify-center items-center fade-in">
-          <a
-            href="/booking"
-            class="border border-white/30 m-4 px-10 py-4 hover:bg-white hover:text-black transition-all duration-500 uppercase text-xs tracking-[0.2em]"
-          >
-            Book Your Moment
-          </a>
-          <a
-            href="#about"
-            class="border border-white/30 px-10 py-4 m-4 hover:bg-white hover:text-black transition-all duration-500 uppercase text-xs tracking-[0.2em]"
-          >
-            View Packages
-          </a>
-        </div>
-      </div>
-
-      <div
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50"
-      >
-        <i data-lucide="chevron-down"></i>
-      </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="py-32 px-8 max-w-7xl mx-auto bg-[#0d0d0d]">
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest block mb-4"
-            >About Us</span
-          >
-          <h2 class="text-5xl serif mb-6">Welcome to Private Popcorn</h2>
-          <p class="text-gray-300 leading-relaxed mb-8 font-light text-lg">
-            Bangalore’s premier private theatre destination for unforgettable
-            celebrations. Whether it’s a birthday, anniversary, romantic date
-            night, or a special surprise, enjoy a luxurious private screening
-            experience designed to turn every moment into a memorable cinematic
-            celebration just for you.
-          </p>
-          <a href="/booking" class="text-xs font-semibold uppercase tracking-[0.2em] border-b-2 border-gold pb-2 hover:text-gold transition-all">
-            Explore our Services
-          </a>
-        </div>
-        <div class="relative fade-in">
-          <div
-            class="aspect-[1/1] overflow-hidden rounded-sm transition-all duration-1000"
-          >
-            <img
-              src="{{ asset('storage/image1.jpg') }}"
-              alt="Cinema Interior"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <div
-            class="absolute -bottom-8 -right-8 w-64 h-80 hidden lg:block border-8 border-[#1a1a1a] shadow-2xl overflow-hidden rounded-sm"
-          >
-            <img
-              src="{{ asset('storage/image5.jpg') }}"
-              alt="Detail"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Updated Services Section -->
-    <section id="services" class="bg-[#0d0d0d] py-12 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-8">
-        <div
-          class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
-        >
-          <div class="max-w-xl fade-in">
-            <span class="text-gold text-sm uppercase tracking-widest"
-              >Our Services</span
-            >
-            <h2 class="text-5xl serif mt-2">Exclusive Celebrations</h2>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Service Card 1 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image6.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Birthday Party
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Bring your birthday celebrations to life with a private
-                    screening experience. Enjoy your favorite films in an
-                    intimate setting, complete with personalized decorations,
-                    gourmet snacks, and more.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+    
+        <!-- Footer -->
+        <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+                <div class="md:col-span-1">
+                <img src="{{ asset('storage/logo.jpg') }}" alt="" />
+                <p class="text-gray-200 py-2 text-sm font-light leading-relaxed">
+                    Crafting unforgettable memories in our exclusive private theaters.
+                </p>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service Card 2 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image4.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Anniversary
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Celebrate your love story with an unforgettable anniversary
-                    at Private Popcorn. Enjoy a romantic private screening,
-                    complete with champagne, gourmet treats, and personalized
-                    touches to make your day truly special.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+                <div>
+                <h5
+                    class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
+                >
+                    Quick Links
+                </h5>
+                <ul class="text-gray-200 text-sm font-light space-y-5">
+                    <li>
+                    <a href="/privacy-policy" class="hover:text-gold transition-colors"
+                        >Privacy Policy</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/terms-and-conditions" class="hover:text-gold transition-colors"
+                        >Terms & Conditions</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/cancellation-and-refund" class="hover:text-gold transition-colors"
+                        >Cancellation & Refund</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/shipping" class="hover:text-gold transition-colors"
+                        >Shipping Policy</a
+                    >
+                    </li>
+                </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service Card 3 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image7.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Friends Hangout
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Bring your birthday celebrations to life with a private
-                    screening experience. Enjoy your favorite films in an
-                    intimate setting, complete with personalized decorations,
-                    gourmet snacks, and more.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+                <div>
+                <h5
+                    class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
+                >
+                    Contact Us
+                </h5>
+                <p class="text-gray-200 text-sm font-light mb-4">8884447958</p>
+                <p class="text-gray-200 text-sm font-light mb-4">
+                    privatepopcorn913@gmail.com
+                </p>
+                <p class="text-200 text-sm font-light mb-4">
+                    3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore - 560056
+                </p>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Suites Section -->
-    <section id="suites" class="bg-[#0d0d0d] py-32 px-8">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest"
-            >Our Theatres</span
-          >
-          <h2 class="text-5xl serif mt-2">Designed for Your Special Moments</h2>
-          <p
-            class="text-gold uppercase tracking-[0.1em] leading-[1.8] mt-4 mb-4 text-sm fade-in"
-          >
-            Choose the perfect space for your celebration. Each package is
-            designed to provide<br />
-            a unique and unforgettable experience.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Suite 1 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image6.jpg') }}"
-                alt="The Onyx"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Two
-              </div>
+            <div class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center" >
+                <p class="text-gray-200 text-[14px] uppercase tracking-widest">
+                © 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a>
+                </p>
+                <div class="flex space-x-6 text-gray-500">
+                <a href="https://www.instagram.com/private_popcornofficial/" class="hover:text-gold transition-colors">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                </div>
             </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Couple Nest</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                An intimate, romantic setting perfect for anniversaries,
-                proposals, or a special date night.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
+        </footer>
 
-          <!-- Suite 2 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-            style="transition-delay: 200ms"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image7.jpg') }}"
-                alt="The Grand"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Friends
-              </div>
-            </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Friends Den</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                The ultimate hangout for birthdays, reunions, or a fun
-                get-together with your squad.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
+        <script>
+            // Configuration
+            const phoneNumber = "8884447958"; // Replace with your international format number (no + or spaces)
+            const welcomeMessage = "Hello! I have a question about your services.";
 
-          <!-- Suite 3 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-            style="transition-delay: 400ms"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image3.jpg') }}"
-                alt="Noir"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Family
-              </div>
-            </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Fam Jam</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                Create lasting memories with loved ones in a comfortable,
-                family-friendly environment.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            window.onload = function () {
+                const waLink = document.getElementById("whatsappLink");
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-18 px-4 bg-[#0d0d0d]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest"
-            >Our Gallery</span
-          >
-          <h2 class="text-5xl serif mt-2">Glimpses of Celebrations</h2>
-        </div>
+                // Encode the message for the URL
+                const encodedMessage = encodeURIComponent(welcomeMessage);
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="md:col-span-2 md:row-span-2 gallery-item fade-in">
-            <img
-              src="{{ asset('storage/image3.jpg') }}"
-              class="w-full h-full object-cover rounded-sm shadow-2xl"
-              alt="Theater Room"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 100ms">
-            <img
-              src="{{ asset('storage/image6.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Cocktail"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 200ms">
-            <img
-              src="{{ asset('storage/image7.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Projector"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 300ms">
-            <img
-              src="{{ asset('storage/image4.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Audio Booth"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 400ms">
-            <img
-              src="{{ asset('storage/image1.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Martini"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+                // Create the official WhatsApp API link
+                // Using 'https://wa.me/' is the modern, recommended way
+                waLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    <!-- WhatsApp Floating Button -->
-    <a href="#" id="whatsappLink" class="whatsapp-float" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+                console.log("WhatsApp link initialized for:", phoneNumber);
+            };
+        </script>
 
-    <!-- Footer -->
-    <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
-      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
-        <div class="md:col-span-1">
-          <img src="{{ asset('storage/logo.jpg') }}" alt="" />
-          <p class="text-gray-200 py-2 text-sm font-light leading-relaxed">
-            Crafting unforgettable memories in our exclusive private theaters.
-          </p>
-        </div>
-        <div>
-          <h5
-            class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
-          >
-            Quick Links
-          </h5>
-          <ul class="text-gray-200 text-sm font-light space-y-5">
-            <li>
-              <a href="/privacy-policy" class="hover:text-gold transition-colors"
-                >Privacy Policy</a
-              >
-            </li>
-            <li>
-              <a href="/terms-and-conditions" class="hover:text-gold transition-colors"
-                >Terms & Conditions</a
-              >
-            </li>
-            <li>
-              <a href="/cancellation-and-refund" class="hover:text-gold transition-colors"
-                >Cancellation & Refund</a
-              >
-            </li>
-            <li>
-              <a href="/shipping" class="hover:text-gold transition-colors"
-                >Shipping Policy</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h5
-            class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
-          >
-            Contact Us
-          </h5>
-          <p class="text-gray-200 text-sm font-light mb-4">8884447958</p>
-          <p class="text-gray-200 text-sm font-light mb-4">
-            privatepopcorn913@gmail.com
-          </p>
-          <p class="text-gray-200 text-sm font-light mb-4">
-            3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore - 560056
-          </p>
-        </div>
-      </div>
-      <div
-        class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center"
-      >
-        <p class="text-gray-200 text-[14px] uppercase tracking-widest">
-          © 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a>
-        </p>
-        <div class="flex space-x-6 text-gray-500">
-          <a href="https://www.instagram.com/private_popcornofficial/" class="hover:text-gold transition-colors">
-            <i data-lucide="instagram" class="w-4 h-4"></i>
-          </a>
-        </div>
-      </div>
-    </footer>
+        <script>
+            // Initialize Lucide Icons
+            lucide.createIcons();
 
-    <script>
-      // Configuration
-      const phoneNumber = "8884447958"; // Replace with your international format number (no + or spaces)
-      const welcomeMessage = "Hello! I have a question about your services.";
+            // Navbar Scroll Effect
+            window.addEventListener("scroll", () => {
+                const nav = document.getElementById("navbar");
+                if (window.scrollY > 80) {
+                nav.classList.add("nav-scrolled");
+                } else {
+                nav.classList.remove("nav-scrolled");
+                }
+            });
 
-      window.onload = function () {
-        const waLink = document.getElementById("whatsappLink");
+            // Intersection Observer for Animations
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px",
+            };
 
-        // Encode the message for the URL
-        const encodedMessage = encodeURIComponent(welcomeMessage);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+                });
+            }, observerOptions);
 
-        // Create the official WhatsApp API link
-        // Using 'https://wa.me/' is the modern, recommended way
-        waLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            document.querySelectorAll(".fade-in").forEach((el) => {
+                observer.observe(el);
+            });
 
-        console.log("WhatsApp link initialized for:", phoneNumber);
-      };
-    </script>
-
-    <script>
-      // Initialize Lucide Icons
-      lucide.createIcons();
-
-      // Navbar Scroll Effect
-      window.addEventListener("scroll", () => {
-        const nav = document.getElementById("navbar");
-        if (window.scrollY > 80) {
-          nav.classList.add("nav-scrolled");
-        } else {
-          nav.classList.remove("nav-scrolled");
-        }
-      });
-
-      // Intersection Observer for Animations
-      const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll(".fade-in").forEach((el) => {
-        observer.observe(el);
-      });
-
-      // Add slow zoom animation dynamically
-      const style = document.createElement("style");
-      style.innerHTML = `
-            @keyframes slowZoom {
-                0% { transform: scale(1); }
-                100% { transform: scale(1.15); }
-            }
-            .animate-slow-zoom {
-                animation: slowZoom 25s infinite alternate ease-in-out;
-            }
-        `;
-      document.head.appendChild(style);
-    </script>
+            // Add slow zoom animation dynamically
+            const style = document.createElement("style");
+            style.innerHTML = `
+                    @keyframes slowZoom {
+                        0% { transform: scale(1); }
+                        100% { transform: scale(1.15); }
+                    }
+                    .animate-slow-zoom {
+                        animation: slowZoom 25s infinite alternate ease-in-out;
+                    }
+                `;
+            document.head.appendChild(style);
+        </script>
   </body>
 </html>
-

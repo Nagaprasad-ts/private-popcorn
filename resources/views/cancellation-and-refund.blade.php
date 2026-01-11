@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.name') }} | Cancellation & Refund Policy</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -184,7 +184,7 @@
                 height: 50px;
                 }
             }
-            </style>
+        </style>
 
         {{-- Scripts --}}
         <link rel="icon" type="image/png" sizes="32x32" href="images/logo1.jpg" />
@@ -192,545 +192,288 @@
         <script src="https://unpkg.com/lucide@latest"></script>
     </head>
     <body class="overflow-x-hidden">
-    <!-- Navigation -->
-    <nav
-      id="navbar"
-      class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white"
-    >
-      <div class="flex items-center">
-        <span class="text-2xl font-light tracking-[0.3em] uppercase serif">
-            <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="h-10 inline-block" />
-        </span>
-      </div>
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white">
+          <div class="flex items-center">
+            <span class="text-2xl font-light tracking-[0.3em] uppercase serif">
+                <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="h-10 inline-block" />
+            </span>
+          </div>
+    
+          <!-- Right Aligned Nav Items -->
+          <div class="flex items-center space-x-10">
+            <div class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light">
+              <a href="/" class="hover:text-gold transition-colors">Home</a>
+              <a href="/#services" class="hover:text-gold transition-colors">Packages</a>
+              <a href="/#gallery" class="hover:text-gold transition-colors">Gallery</a>
+            </div>
+    
+            <a href="/booking" class="bg-gold text-black px-8 py-3 text-[14px] uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-semibold shadow-lg border border-red-500 hover:border-black-500 rounded-lg">
+              Book Now
+            </a>
+          </div>
+        </nav>
 
-      <!-- Right Aligned Nav Items -->
-      <div class="flex items-center space-x-10">
-        <div
-          class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light"
-        >
-          <a href="#services" class="hover:text-gold transition-colors"
-            >Packages</a
-          >
-          <a href="#gallery" class="hover:text-gold transition-colors"
-            >Gallery</a
-          >
-        </div>
+        <!-- Main Content -->
+        <main class="flex-grow pt-32">
+            <div class="p-8">
+                <header class="mb-6">
+                    <h1 class="text-3xl text-red-500 font-extrabold">Cancellation & Refund Policy</h1>
+                    <p class="text-sm text-gray-300 mt-1">
+                        Last updated: <span class="font-medium">Jan 11, 2026</span>
+                    </p>
+                    <p class="mt-2 text-gray-300">Clear, fair, and easy to follow — here’s how cancellations and refunds work for your bookings.</p>
+                </header>
 
-        <a href="/booking" class="bg-gold text-black px-8 py-3 text-[14px] uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-semibold shadow-lg border border-red-500 hover:border-black-500 rounded-lg">
-          Book Now
+                <section class="space-y-6 text-gray-300">
+                    <article>
+                    <h2 class="text-xl font-medium">Cancellations</h2>
+                    <p class="mt-2">You may <strong>cancel your booking up to 2 days (48 hours)</strong> before the scheduled booking date. Cancellations must be submitted by contacting our reception team via phone, WhatsApp, or in person at the theater. A cancellation is considered valid only after you receive confirmation from our staff.</p>
+                    </article>
+
+                    <article>
+                    <h2 class="text-xl font-medium">Refunds</h2>
+                    <ul class="mt-2 list-disc list-inside space-y-2">
+                        <li>If you cancel at least 2 days prior to the booking date, you will receive a <strong>full refund</strong> of the amount paid.</li>
+                        <li>Refunds are processed to the original payment method within <strong>5–7 working days</strong>. For manual reception bookings, refunds may be issued in cash or via the original transaction method.</li>
+                    </ul>
+                    </article>
+
+                    <article>
+                    <h2 class="text-xl font-medium">Late Cancellations & No-Shows</h2>
+                    <p class="mt-2">Cancellations made <strong>less than 2 days</strong> before the booking date are <strong>not eligible for a refund</strong>. No-shows (failure to attend without prior cancellation) are not refundable.</p>
+                    </article>
+
+                    <article>
+                    <h2 class="text-xl font-medium">Theater-Initiated Changes</h2>
+                    <p class="mt-2">If we need to cancel your booking due to operational reasons (maintenance, unforeseen closures), you will be offered either a <strong>full refund</strong> or the option to <strong>reschedule</strong> to another available slot.</p>
+                    </article>
+
+                    <article>
+                    <h2 class="text-xl font-medium">How to Contact Us</h2>
+                    <p class="mt-2">To cancel or inquire about refunds, reach out to our support team:</p>
+
+                    <div class="mt-3 grid sm:flex sm:items-center gap-3">
+                        <a href="tel:+918884447958" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow hover:bg-indigo-700">Call: +91 88844 47958</a>
+                        <a href="mailto:privatepopcorn913@gmail.com" class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-red-500 text-sm text-red-700 hover:bg-gray-50">Email: privatepopcorn913@gmail.com</a>
+                        <a href="https://wa.me/+918884447958" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-green-500 text-white text-sm font-medium hover:bg-amber-600">WhatsApp</a>
+                    </div>
+                    </article>
+
+                    <article class="mt-10">
+                        <h2 class="text-xl font-semibold mb-4">
+                        Frequently Asked Questions
+                        </h2>
+                        <dl class="space-y-3" id="faq-container">
+                            <!-- FAQs will be inserted here by JavaScript -->
+                        </dl>
+                    </article>
+
+                    <footer class="mt-6 border-t pt-4 text-sm text-gray-400">
+                        <p>Please ensure your contact details are correct in the booking. This policy is subject to change; check this page for the latest version.</p>
+                    </footer>
+                </section>
+            </div>
+        </main>
+        
+        <!-- WhatsApp Floating Button -->
+        <a href="#" id="whatsappLink" class="whatsapp-float" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
         </a>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header
-      class="relative h-screen w-full flex items-center justify-center overflow-hidden"
-    >
-      <img
-        src="{{ asset('storage/image3.jpg') }}"
-        alt="Luxury Theater"
-        class="absolute inset-0 w-full h-full object-cover scale-110 animate-slow-zoom opacity-60"
-      />
-      <div class="absolute inset-0 hero-overlay"></div>
-
-      <div class="relative text-center text-white px-4 mt-20">
-        <h1 class="text-4xl md:text-8xl font-light mb-5 serif fade-in">
-          A Space for every <br />
-          kind of moment.
-        </h1>
-        <p
-          class="text-gold uppercase text-center px-8 tracking-[0.1em] leading-[2.2] mb-4 text-xs md:text-sm fade-in"
-        >
-          Experience unparalleled luxury and create timeless memories at Private
-          <br />
-          Popcorn. Your exclusive event starts here.
-        </p>
-        <div class="flex justify-center items-center fade-in">
-          <a
-            href="/booking"
-            class="border border-white/30 m-4 px-10 py-4 hover:bg-white hover:text-black transition-all duration-500 uppercase text-xs tracking-[0.2em]"
-          >
-            Book Your Moment
-          </a>
-          <a
-            href="#about"
-            class="border border-white/30 px-10 py-4 m-4 hover:bg-white hover:text-black transition-all duration-500 uppercase text-xs tracking-[0.2em]"
-          >
-            View Packages
-          </a>
-        </div>
-      </div>
-
-      <div
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50"
-      >
-        <i data-lucide="chevron-down"></i>
-      </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="py-32 px-8 max-w-7xl mx-auto bg-[#0d0d0d]">
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest block mb-4"
-            >About Us</span
-          >
-          <h2 class="text-5xl serif mb-6">Welcome to Private Popcorn</h2>
-          <p class="text-gray-300 leading-relaxed mb-8 font-light text-lg">
-            Bangalore’s premier private theatre destination for unforgettable
-            celebrations. Whether it’s a birthday, anniversary, romantic date
-            night, or a special surprise, enjoy a luxurious private screening
-            experience designed to turn every moment into a memorable cinematic
-            celebration just for you.
-          </p>
-          <a href="/booking" class="text-xs font-semibold uppercase tracking-[0.2em] border-b-2 border-gold pb-2 hover:text-gold transition-all">
-            Explore our Services
-          </a>
-        </div>
-        <div class="relative fade-in">
-          <div
-            class="aspect-[1/1] overflow-hidden rounded-sm transition-all duration-1000"
-          >
-            <img
-              src="{{ asset('storage/image1.jpg') }}"
-              alt="Cinema Interior"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <div
-            class="absolute -bottom-8 -right-8 w-64 h-80 hidden lg:block border-8 border-[#1a1a1a] shadow-2xl overflow-hidden rounded-sm"
-          >
-            <img
-              src="{{ asset('storage/image5.jpg') }}"
-              alt="Detail"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Updated Services Section -->
-    <section id="services" class="bg-[#0d0d0d] py-12 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-8">
-        <div
-          class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
-        >
-          <div class="max-w-xl fade-in">
-            <span class="text-gold text-sm uppercase tracking-widest"
-              >Our Services</span
-            >
-            <h2 class="text-5xl serif mt-2">Exclusive Celebrations</h2>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Service Card 1 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image6.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Birthday Party
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Bring your birthday celebrations to life with a private
-                    screening experience. Enjoy your favorite films in an
-                    intimate setting, complete with personalized decorations,
-                    gourmet snacks, and more.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+    
+        <!-- Footer -->
+        <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+                <div class="md:col-span-1">
+                <img src="{{ asset('storage/logo.jpg') }}" alt="" />
+                <p class="text-gray-200 py-2 text-sm font-light leading-relaxed">
+                    Crafting unforgettable memories in our exclusive private theaters.
+                </p>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service Card 2 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image4.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Anniversary
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Celebrate your love story with an unforgettable anniversary
-                    at Private Popcorn. Enjoy a romantic private screening,
-                    complete with champagne, gourmet treats, and personalized
-                    touches to make your day truly special.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+                <div>
+                <h5
+                    class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
+                >
+                    Quick Links
+                </h5>
+                <ul class="text-gray-200 text-sm font-light space-y-5">
+                    <li>
+                    <a href="/privacy-policy" class="hover:text-gold transition-colors"
+                        >Privacy Policy</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/terms-and-conditions" class="hover:text-gold transition-colors"
+                        >Terms & Conditions</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/cancellation-and-refund" class="hover:text-gold transition-colors"
+                        >Cancellation & Refund</a
+                    >
+                    </li>
+                    <li>
+                    <a href="/shipping" class="hover:text-gold transition-colors"
+                        >Shipping Policy</a
+                    >
+                    </li>
+                </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service Card 3 -->
-          <div
-            class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
-          >
-            <img
-              src="{{ asset('storage/image7.jpg') }}"
-              alt="Sommelier"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="service-overlay absolute inset-0 flex flex-col justify-end p-10"
-            >
-              <div class="service-title-container">
-                <h3 class="serif text-3xl text-white service-title">
-                  Friends Hangout
-                </h3>
-                <div class="service-description">
-                  <p
-                    class="text-gray-300 text-sm leading-relaxed font-light mb-6"
-                  >
-                    Bring your birthday celebrations to life with a private
-                    screening experience. Enjoy your favorite films in an
-                    intimate setting, complete with personalized decorations,
-                    gourmet snacks, and more.
-                  </p>
-                  <a
-                    href="/booking"
-                    class="text-[10px] uppercase tracking-widest text-gold font-bold"
-                    >Book Your Moment</a
-                  >
+                <div>
+                <h5
+                    class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
+                >
+                    Contact Us
+                </h5>
+                <p class="text-gray-200 text-sm font-light mb-4">8884447958</p>
+                <p class="text-gray-200 text-sm font-light mb-4">
+                    privatepopcorn913@gmail.com
+                </p>
+                <p class="text-200 text-sm font-light mb-4">
+                    3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore - 560056
+                </p>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Suites Section -->
-    <section id="suites" class="bg-[#0d0d0d] py-32 px-8">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest"
-            >Our Theatres</span
-          >
-          <h2 class="text-5xl serif mt-2">Designed for Your Special Moments</h2>
-          <p
-            class="text-gold uppercase tracking-[0.1em] leading-[1.8] mt-4 mb-4 text-sm fade-in"
-          >
-            Choose the perfect space for your celebration. Each package is
-            designed to provide<br />
-            a unique and unforgettable experience.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Suite 1 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image6.jpg') }}"
-                alt="The Onyx"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Two
-              </div>
+            <div class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center" >
+                <p class="text-gray-200 text-[14px] uppercase tracking-widest">
+                © 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a>
+                </p>
+                <div class="flex space-x-6 text-gray-500">
+                <a href="https://www.instagram.com/private_popcornofficial/" class="hover:text-gold transition-colors">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                </div>
             </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Couple Nest</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                An intimate, romantic setting perfect for anniversaries,
-                proposals, or a special date night.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
+        </footer>
 
-          <!-- Suite 2 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-            style="transition-delay: 200ms"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image7.jpg') }}"
-                alt="The Grand"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Friends
-              </div>
-            </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Friends Den</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                The ultimate hangout for birthdays, reunions, or a fun
-                get-together with your squad.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
+        <script>
+            // Configuration
+            const phoneNumber = "8884447958"; // Replace with your international format number (no + or spaces)
+            const welcomeMessage = "Hello! I have a question about your services.";
 
-          <!-- Suite 3 -->
-          <div
-            class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in"
-            style="transition-delay: 400ms"
-          >
-            <div class="h-80 overflow-hidden relative">
-              <img
-                src="{{ asset('storage/image3.jpg') }}"
-                alt="Noir"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute top-4 right-4 bg-gold text-black px-3 py-1 text-[10px] uppercase tracking-widest font-semibold"
-              >
-                For Family
-              </div>
-            </div>
-            <div class="p-10">
-              <h3 class="serif text-3xl mb-3">Fam Jam</h3>
-              <p class="text-gray-200 text-sm mb-6 font-light">
-                Create lasting memories with loved ones in a comfortable,
-                family-friendly environment.
-              </p>
-              <a
-                href="/booking"
-                class="text-[10px] uppercase tracking-[0.2em] text-gold font-bold border-b border-gold/30 pb-1"
-                >Reserve Now</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            window.onload = function () {
+                const waLink = document.getElementById("whatsappLink");
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-18 px-4 bg-[#0d0d0d]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 fade-in">
-          <span class="text-gold text-sm uppercase tracking-widest"
-            >Our Gallery</span
-          >
-          <h2 class="text-5xl serif mt-2">Glimpses of Celebrations</h2>
-        </div>
+                // Encode the message for the URL
+                const encodedMessage = encodeURIComponent(welcomeMessage);
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="md:col-span-2 md:row-span-2 gallery-item fade-in">
-            <img
-              src="{{ asset('storage/image3.jpg') }}"
-              class="w-full h-full object-cover rounded-sm shadow-2xl"
-              alt="Theater Room"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 100ms">
-            <img
-              src="{{ asset('storage/image6.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Cocktail"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 200ms">
-            <img
-              src="{{ asset('storage/image7.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Projector"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 300ms">
-            <img
-              src="{{ asset('storage/image4.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Audio Booth"
-            />
-          </div>
-          <div class="gallery-item fade-in" style="transition-delay: 400ms">
-            <img
-              src="{{ asset('storage/image1.jpg') }}"
-              class="w-full h-full object-cover rounded-sm"
-              alt="Martini"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+                // Create the official WhatsApp API link
+                // Using 'https://wa.me/' is the modern, recommended way
+                waLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    <!-- WhatsApp Floating Button -->
-    <a href="#" id="whatsappLink" class="whatsapp-float" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+                console.log("WhatsApp link initialized for:", phoneNumber);
+            };
 
-    <!-- Footer -->
-    <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
-      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
-        <div class="md:col-span-1">
-          <img src="{{ asset('storage/logo.jpg') }}" alt="" />
-          <p class="text-gray-200 py-2 text-sm font-light leading-relaxed">
-            Crafting unforgettable memories in our exclusive private theaters.
-          </p>
-        </div>
-        <div>
-          <h5
-            class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
-          >
-            Quick Links
-          </h5>
-          <ul class="text-gray-200 text-sm font-light space-y-5">
-            <li>
-              <a href="/privacy-policy" class="hover:text-gold transition-colors"
-                >Privacy Policy</a
-              >
-            </li>
-            <li>
-              <a href="/terms-and-conditions" class="hover:text-gold transition-colors"
-                >Terms & Conditions</a
-              >
-            </li>
-            <li>
-              <a href="/cancellation-and-refund" class="hover:text-gold transition-colors"
-                >Cancellation & Refund</a
-              >
-            </li>
-            <li>
-              <a href="/shipping" class="hover:text-gold transition-colors"
-                >Shipping Policy</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h5
-            class="uppercase text-xs tracking-[0.3em] mb-8 font-semibold text-gold"
-          >
-            Contact Us
-          </h5>
-          <p class="text-gray-200 text-sm font-light mb-4">8884447958</p>
-          <p class="text-gray-200 text-sm font-light mb-4">
-            privatepopcorn913@gmail.com
-          </p>
-          <p class="text-gray-200 text-sm font-light mb-4">
-            3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore - 560056
-          </p>
-        </div>
-      </div>
-      <div
-        class="max-w-7xl mx-auto pt-6 mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center"
-      >
-        <p class="text-gray-200 text-[14px] uppercase tracking-widest">
-          © 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a>
-        </p>
-        <div class="flex space-x-6 text-gray-500">
-          <a href="https://www.instagram.com/private_popcornofficial/" class="hover:text-gold transition-colors">
-            <i data-lucide="instagram" class="w-4 h-4"></i>
-          </a>
-        </div>
-      </div>
-    </footer>
+            const faqs = [
+                {
+                    question: "When exactly is the 48-hour cutoff?",
+                    answer:
+                    "The cutoff is 48 hours before your booked slot's date and start time. For example, for a booking on Oct 10 at 10:00 AM, you must cancel before Oct 8 at 10:00 AM.",
+                },
+                {
+                    question: "How long will the refund take?",
+                    answer:
+                    "Refunds are usually processed within 5–7 working days, depending on your payment provider.",
+                },
+                {
+                    question: "I booked at the counter — how is my refund issued?",
+                    answer:
+                    "For walk-in bookings made at reception, refunds will be issued in cash or via the original transaction method, depending on how the payment was taken.",
+                },
+            ];
+            
+            const faqContainer = document.getElementById('faq-container');
+            let openIndex = -1;
 
-    <script>
-      // Configuration
-      const phoneNumber = "8884447958"; // Replace with your international format number (no + or spaces)
-      const welcomeMessage = "Hello! I have a question about your services.";
-
-      window.onload = function () {
-        const waLink = document.getElementById("whatsappLink");
-
-        // Encode the message for the URL
-        const encodedMessage = encodeURIComponent(welcomeMessage);
-
-        // Create the official WhatsApp API link
-        // Using 'https://wa.me/' is the modern, recommended way
-        waLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-        console.log("WhatsApp link initialized for:", phoneNumber);
-      };
-    </script>
-
-    <script>
-      // Initialize Lucide Icons
-      lucide.createIcons();
-
-      // Navbar Scroll Effect
-      window.addEventListener("scroll", () => {
-        const nav = document.getElementById("navbar");
-        if (window.scrollY > 80) {
-          nav.classList.add("nav-scrolled");
-        } else {
-          nav.classList.remove("nav-scrolled");
-        }
-      });
-
-      // Intersection Observer for Animations
-      const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll(".fade-in").forEach((el) => {
-        observer.observe(el);
-      });
-
-      // Add slow zoom animation dynamically
-      const style = document.createElement("style");
-      style.innerHTML = `
-            @keyframes slowZoom {
-                0% { transform: scale(1); }
-                100% { transform: scale(1.15); }
+            function toggleFAQ(index) {
+                if (openIndex === index) {
+                    openIndex = -1;
+                } else {
+                    openIndex = index;
+                }
+                renderFAQs();
             }
-            .animate-slow-zoom {
-                animation: slowZoom 25s infinite alternate ease-in-out;
+
+            function renderFAQs() {
+                faqContainer.innerHTML = '';
+                faqs.forEach((faq, index) => {
+                    const faqElement = document.createElement('div');
+                    faqElement.className = 'border rounded-lg';
+
+                    const questionButton = document.createElement('button');
+                    questionButton.className = 'w-full flex justify-between items-center px-4 py-3 text-left text-gray-300 font-medium hover:bg-gray-800';
+                    questionButton.onclick = () => toggleFAQ(index);
+                    
+                    const questionText = document.createElement('span');
+                    questionText.textContent = faq.question;
+                    questionButton.appendChild(questionText);
+
+                    const icon = document.createElement('span');
+                    icon.className = 'ml-2 text-gray-500';
+                    icon.textContent = openIndex === index ? '−' : '+';
+                    questionButton.appendChild(icon);
+                    
+                    faqElement.appendChild(questionButton);
+
+                    if (openIndex === index) {
+                        const answerElement = document.createElement('dd');
+                        answerElement.className = 'px-4 pb-4 text-gray-300 border-t bg-gray-800';
+                        answerElement.textContent = faq.answer;
+                        faqElement.appendChild(answerElement);
+                    }
+                    
+                    faqContainer.appendChild(faqElement);
+                });
             }
-        `;
-      document.head.appendChild(style);
-    </script>
+
+            renderFAQs();
+
+        </script>
+
+        <script>
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Navbar Scroll Effect
+            window.addEventListener("scroll", () => {
+                const nav = document.getElementById("navbar");
+                if (window.scrollY > 80) {
+                nav.classList.add("nav-scrolled");
+                } else {
+                nav.classList.remove("nav-scrolled");
+                }
+            });
+
+            // Intersection Observer for Animations
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px",
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll(".fade-in").forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Add slow zoom animation dynamically
+            const style = document.createElement("style");
+            style.innerHTML = `
+                    @keyframes slowZoom {
+                        0% { transform: scale(1); }
+                        100% { transform: scale(1.15); }
+                    }
+                    .animate-slow-zoom {
+                        animation: slowZoom 25s infinite alternate ease-in-out;
+                    }
+                `;
+            document.head.appendChild(style);
+        </script>
   </body>
 </html>
-

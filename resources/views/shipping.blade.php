@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name') }} | Booking Failed</title>
+        <title>{{ config('app.name') }} | Shipping Policy</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,6 +66,124 @@
                 padding-bottom: 0.75rem;
                 /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
             }
+            .gallery-item {
+                transition: all 0.6s ease;
+            }
+            .gallery-item:hover {
+                transform: scale(1.05);
+                z-index: 10;
+            }
+            /* Services Hover Animation */
+            .service-card .service-overlay {
+                background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.55) 0%,
+                rgba(0, 0, 0, 0.4) 100%
+                );
+                transform: translateY(0);
+                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .service-card:hover .service-overlay {
+                background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.95) 0%,
+                rgba(197, 160, 89, 0.2) 100%
+                );
+            }
+            .service-card .service-title {
+                transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .service-card:hover .service-title {
+                transform: translateY(0);
+            }
+            .service-card .service-description {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .service-card:hover .service-description {
+                max-height: 200px;
+                opacity: 1;
+                margin-top: 1rem;
+            }
+            .service-card img {
+                transition: transform 0.8s ease;
+            }
+            .service-card:hover img {
+                transform: scale(1.1);
+            }
+
+            /* Custom pulse animation for the button */
+            @keyframes pulse-green {
+                0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+                }
+                70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+                }
+                100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+                }
+            }
+
+            .whatsapp-float {
+                position: fixed;
+                bottom: 40px;
+                right: 40px;
+                background-color: #25d366;
+                color: #fff;
+                border-radius: 50px;
+                text-align: center;
+                font-size: 30px;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+                z-index: 100;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 60px;
+                height: 60px;
+                transition: all 0.3s ease;
+                animation: pulse-green 2s infinite;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .whatsapp-float:hover {
+                transform: scale(1.1);
+                background-color: #128c7e;
+            }
+
+            /* Tooltip style */
+            .whatsapp-float::before {
+                content: "Chat with us";
+                position: absolute;
+                right: 75px;
+                background: #333;
+                color: #fff;
+                padding: 5px 12px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-family: sans-serif;
+                white-space: nowrap;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s;
+            }
+
+            .whatsapp-float:hover::before {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            @media (max-width: 768px) {
+                .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                }
+            }
         </style>
 
         {{-- Scripts --}}
@@ -75,10 +193,7 @@
     </head>
     <body class="overflow-x-hidden">
         <!-- Navigation -->
-        <nav
-          id="navbar"
-          class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white"
-        >
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-8 flex justify-between items-center text-white">
           <div class="flex items-center">
             <span class="text-2xl font-light tracking-[0.3em] uppercase serif">
                 <img src="{{ asset('storage/privatepopcorn.webp') }}" alt="Private Popcorn Logo" class="h-10 inline-block" />
@@ -87,15 +202,10 @@
     
           <!-- Right Aligned Nav Items -->
           <div class="flex items-center space-x-10">
-            <div
-              class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light"
-            >
-              <a href="/#services" class="hover:text-gold transition-colors"
-                >Packages</a
-              >
-              <a href="/#gallery" class="hover:text-gold transition-colors"
-                >Gallery</a
-              >
+            <div class="hidden lg:flex space-x-8 text-[14px] uppercase tracking-[0.2em] font-light">
+              <a href="/" class="hover:text-gold transition-colors">Home</a>
+              <a href="/#services" class="hover:text-gold transition-colors">Packages</a>
+              <a href="/#gallery" class="hover:text-gold transition-colors">Gallery</a>
             </div>
     
             <a href="/booking" class="bg-gold text-black px-8 py-3 text-[14px] uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-semibold shadow-lg border border-red-500 hover:border-black-500 rounded-lg">
@@ -105,32 +215,30 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-md w-full space-y-8 bg-[#1a1a1a] p-8 sm:p-10 rounded-xl shadow-lg text-center">
-                
-                <div>
-                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-900">
-                        <!-- Heroicon name: outline/x -->
-                        <svg class="h-8 w-8 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-center text-white mt-5">
-                        Payment Failed
-                    </h1>
-                    <p class="mt-2 text-center text-sm text-gray-400">
-                        Unfortunately, we could not process your booking. Please try again.
-                    </p>
-                </div>
+        <main class="flex-grow pt-32">
+            <div class="p-8">
+              <article>
+                <header class="mb-6">
+                  <h1 class="text-3xl text-red-500 font-extrabold">Shipping Policy</h1>
+                  <p class="text-sm text-gray-300 mt-1">
+                    Last updated: <span class="font-medium">Jan 11, 2026</span>
+                  </p>
+                  <p class="mt-4 text-gray-300">
+                    Our Services are provided as a private theater experience and do not involve the shipping of physical goods. Therefore, there are no shipping options, costs, or delivery times associated with our offerings. All bookings and services are to be enjoyed at our venue located in Bangalore.
+                  </p>
+                </header>
 
-                <div>
-                    <a href="/booking" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-transform transform hover:scale-105">
-                        Try Again
-                    </a>
-                </div>
-
+                <footer class="text-xs text-gray-400 mt-6 pt-6 border-t border-gray-700">
+                  <p>© 2026 Private Popcorn. All rights reserved. | Designed & Developed by <a href="https://nagaprasad-ts.github.io/portfolio" target="_blank" class="text-blue-500 underline">Nagaprasad T S</a></p>
+                </footer>
+              </article>
             </div>
         </main>
+        
+        <!-- WhatsApp Floating Button -->
+        <a href="#" id="whatsappLink" class="whatsapp-float" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
     
         <!-- Footer -->
         <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
@@ -180,7 +288,7 @@
                 <p class="text-gray-200 text-sm font-light mb-4">
                     privatepopcorn913@gmail.com
                 </p>
-                <p class="text-gray-200 text-sm font-light mb-4">
+                <p class="text-200 text-sm font-light mb-4">
                     3rd Floor, #25, 60 Feet Road, Main Road, near Soda Factory, Jnana Juothi Nagar, Railway Layout, Ullal, Bangalore - 560056
                 </p>
                 </div>
@@ -215,10 +323,51 @@
                 console.log("WhatsApp link initialized for:", phoneNumber);
             };
         </script>
-        
+
         <script>
             // Initialize Lucide Icons
             lucide.createIcons();
+
+            // Navbar Scroll Effect
+            window.addEventListener("scroll", () => {
+                const nav = document.getElementById("navbar");
+                if (window.scrollY > 80) {
+                nav.classList.add("nav-scrolled");
+                } else {
+                nav.classList.remove("nav-scrolled");
+                }
+            });
+
+            // Intersection Observer for Animations
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px",
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll(".fade-in").forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Add slow zoom animation dynamically
+            const style = document.createElement("style");
+            style.innerHTML = `
+                    @keyframes slowZoom {
+                        0% { transform: scale(1); }
+                        100% { transform: scale(1.15); }
+                    }
+                    .animate-slow-zoom {
+                        animation: slowZoom 25s infinite alternate ease-in-out;
+                    }
+                `;
+            document.head.appendChild(style);
         </script>
   </body>
 </html>

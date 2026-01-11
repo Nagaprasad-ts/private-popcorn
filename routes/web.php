@@ -4,9 +4,25 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('terms-and-conditions', function () {
+    return view('terms-and-conditions');
+});
+
+Route::get('privacy-policy', function () {
+    return view('privacy-policy');
+});
+
+Route::get('cancellation-and-refund', function () {
+    return view('cancellation-and-refund');
+});
+
+Route::get('shipping', function () {
+    return view('shipping');
+});
 
 
 Route::get('/booking', [BookingController::class, 'index']);
@@ -15,4 +31,8 @@ Route::post('/save-booking', [BookingController::class, 'store']);
 Route::get('/booking/success', [BookingController::class, 'success']);
 Route::get('/booking/failed', [BookingController::class, 'failed']);
 Route::get('/get-available-slots', [BookingController::class, 'getAvailableSlots']);
-Route::get('/booking/receipt/{id}', [BookingController::class, 'downloadReceipt']);
+
+
+Route::get('/booking/receipt/{id}', [App\Http\Controllers\BookingController::class, 'downloadReceipt']);
+
+Route::get('/booking/receipt/{id}/download', [App\Http\Controllers\BookingController::class, 'downloadReceiptPdf']);
