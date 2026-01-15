@@ -35,10 +35,12 @@ class TheatreResource extends Resource
                     ->numeric(),
                 Forms\Components\FileUpload::make('image')
                     ->label('Theatre Image')
-                    ->image() // validates image file type
-                    ->directory('theatres') // optional: stores in storage/app/public/theatres
-                    ->required(), // remove if optional
-            ]);
+                    ->image()
+                    ->disk('public')           // 👈 REQUIRED
+                    ->directory('theatres')    // 👈 now it will store theatres/filename.webp
+                    ->visibility('public')
+                    ->required();
+                            ]);
     }
 
     public static function table(Table $table): Table
