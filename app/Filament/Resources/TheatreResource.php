@@ -39,8 +39,8 @@ class TheatreResource extends Resource
                     ->disk('public')           // 👈 REQUIRED
                     ->directory('theatres')    // 👈 now it will store theatres/filename.webp
                     ->visibility('public')
-                    ->required();
-                            ]);
+                    ->required(), // remove if optional
+            ]);
     }
 
     public static function table(Table $table): Table
