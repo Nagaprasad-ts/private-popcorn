@@ -23,7 +23,7 @@
                             <label class="relative group">
                                 <input type="radio" name="theatre" value="{{ $theatre->id }}" data-price="{{ $theatre->offer_price }}" class="peer sr-only" required>
                                 <div class="pb-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl cursor-pointer text-center transition-all peer-checked:border-gold peer-checked:bg-gray-800 hover:border-gold">
-                                    <img src="{{ asset('storage/' . $theatre->image) }}" alt="{{ $theatre->name }}" class="w-full h-42 object-cover mb-3 rounded-t-lg">
+                                    <img  src="{{ Storage::url($theatre->image) }}" alt="{{ $theatre->name }}" class="w-full h-42 object-cover mb-3 rounded-t-lg">
                                     <div class="mt-2 flex flex-row items-center justify-around space-x-2">
                                         <span class="block text-md font-semibold text-gray-300 peer-checked:text-gold text-left">{{ $theatre->name }}</span>
                                         <div class="text-right flex flex-row items-baseline justify-end space-x-2">
