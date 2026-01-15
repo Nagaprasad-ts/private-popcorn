@@ -34,12 +34,11 @@ class TheatreResource extends Resource
                     ->required()
                     ->numeric(),
                 Forms\Components\FileUpload::make('image')
-                    ->label('Theatre Image')
                     ->image()
-                    ->disk('public')           // 👈 REQUIRED
-                    ->directory('theatres')    // 👈 now it will store theatres/filename.webp
+                    ->disk('s3')
+                    ->directory('theatres')
                     ->visibility('public')
-                    ->required(), // remove if optional
+                    ->required(),
             ]);
     }
 
