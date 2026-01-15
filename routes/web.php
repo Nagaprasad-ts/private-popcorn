@@ -35,4 +35,9 @@ Route::get('/get-available-slots', [BookingController::class, 'getAvailableSlots
 
 Route::get('/booking/receipt/{id}', [App\Http\Controllers\BookingController::class, 'downloadReceipt']);
 
+use App\Http\Controllers\BlogController;
+
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+
 Route::get('/booking/receipt/{id}/download', [App\Http\Controllers\BookingController::class, 'downloadReceiptPdf']);
