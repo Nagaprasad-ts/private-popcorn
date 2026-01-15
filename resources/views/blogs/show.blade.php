@@ -9,7 +9,7 @@
         </div>
 
         <div class="fade-in">
-            <img src="{{ asset('images/' . $blog->image) }}" alt="{{ $blog->title }}" class="w-full h-auto object-cover rounded-sm shadow-2xl mb-8" />
+            <img src="{{ Storage::disk('public')->url($blog->image) }}" alt="{{ $blog->title }}" class="w-full h-auto object-cover rounded-sm shadow-2xl mb-8" />
         </div>
 
         <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed font-light text-lg">

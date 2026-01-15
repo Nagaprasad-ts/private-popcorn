@@ -12,7 +12,7 @@
             @foreach($blogs as $blog)
                 <a href="{{ route('blogs.show', $blog) }}" class="group bg-[#1a1a1a] overflow-hidden border border-white/5 hover:border-gold/50 transition-all duration-500 fade-in">
                     <div class="h-80 overflow-hidden relative">
-                        <img src="{{ asset('images/' . $blog->image) }}" alt="{{ $blog->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <img src="{{ Storage::disk('public')->url($blog->image) }}" alt="{{ $blog->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     </div>
                     <div class="p-10">
                         <h3 class="serif text-3xl mb-3">{{ $blog->title }}</h3>

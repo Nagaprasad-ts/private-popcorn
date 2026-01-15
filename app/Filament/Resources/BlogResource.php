@@ -33,7 +33,11 @@ class BlogResource extends Resource
             ->schema([
                 TextInput::make('title')->required(),
                 RichEditor::make('description')->required(),
-                FileUpload::make('image')->image(),
+                FileUpload::make('image')
+                ->image()
+                ->disk('public')   // 👈 THIS IS THE KEY
+                    ->directory('blogs')
+                    ->visibility('public'),
                 TextInput::make('meta_title'),
                 Textarea::make('meta_description'),
                 TagsInput::make('keywords'),
