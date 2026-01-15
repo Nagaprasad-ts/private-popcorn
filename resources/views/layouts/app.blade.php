@@ -236,7 +236,7 @@
     <footer class="text-white mt-20 py-12 px-8 border-t border-white/5">
       <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
         <div class="md:col-span-1">
-          <img src="{{ asset('storage/logo.jpg') }}" alt="" />
+          <img src="{{ asset('images/logo.jpg') }}" alt="" />
           <p class="text-gray-200 py-2 text-sm font-light leading-relaxed">
             Crafting unforgettable memories in our exclusive private theaters.
           </p>

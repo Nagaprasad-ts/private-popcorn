@@ -6,7 +6,7 @@
       class="relative h-screen w-full flex items-center justify-center overflow-hidden"
     >
       <img
-        src="{{ asset('storage/image3.jpg') }}"
+        src="{{ asset('images/image3.jpg') }}"
         alt="Luxury Theater"
         class="absolute inset-0 w-full h-full object-cover scale-110 animate-slow-zoom opacity-60"
       />
@@ -71,7 +71,7 @@
             class="aspect-[1/1] overflow-hidden rounded-sm transition-all duration-1000"
           >
             <img
-              src="{{ asset('storage/image1.jpg') }}"
+              src="{{ asset('images/image1.jpg') }}"
               alt="Cinema Interior"
               class="w-full h-full object-cover"
             />
@@ -80,7 +80,7 @@
             class="absolute -bottom-8 -right-8 w-64 h-80 hidden lg:block border-8 border-[#1a1a1a] shadow-2xl overflow-hidden rounded-sm"
           >
             <img
-              src="{{ asset('storage/image5.jpg') }}"
+              src="{{ asset('images/image5.jpg') }}"
               alt="Detail"
               class="w-full h-full object-cover"
             />
@@ -109,7 +109,7 @@
             class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
           >
             <img
-              src="{{ asset('storage/image6.jpg') }}"
+              src="{{ asset('images/image6.jpg') }}"
               alt="Sommelier"
               class="w-full h-full object-cover"
             />
@@ -144,7 +144,7 @@
             class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
           >
             <img
-              src="{{ asset('storage/image4.jpg') }}"
+              src="{{ asset('images/image4.jpg') }}"
               alt="Sommelier"
               class="w-full h-full object-cover"
             />
@@ -179,7 +179,7 @@
             class="service-card relative h-[500px] overflow-hidden group rounded-sm fade-in"
           >
             <img
-              src="{{ asset('storage/image7.jpg') }}"
+              src="{{ asset('images/image7.jpg') }}"
               alt="Sommelier"
               class="w-full h-full object-cover"
             />
@@ -235,7 +235,7 @@
           >
             <div class="h-80 overflow-hidden relative">
               <img
-                src="{{ asset('storage/image6.jpg') }}"
+                src="{{ asset('images/image6.jpg') }}"
                 alt="The Onyx"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -266,7 +266,7 @@
           >
             <div class="h-80 overflow-hidden relative">
               <img
-                src="{{ asset('storage/image7.jpg') }}"
+                src="{{ asset('images/image7.jpg') }}"
                 alt="The Grand"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -297,7 +297,7 @@
           >
             <div class="h-80 overflow-hidden relative">
               <img
-                src="{{ asset('storage/image3.jpg') }}"
+                src="{{ asset('images/image3.jpg') }}"
                 alt="Noir"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -337,35 +337,35 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div class="md:col-span-2 md:row-span-2 gallery-item fade-in">
             <img
-              src="{{ asset('storage/image3.jpg') }}"
+              src="{{ asset('images/image3.jpg') }}"
               class="w-full h-full object-cover rounded-sm shadow-2xl"
               alt="Theater Room"
             />
           </div>
           <div class="gallery-item fade-in" style="transition-delay: 100ms">
             <img
-              src="{{ asset('storage/image6.jpg') }}"
+              src="{{ asset('images/image6.jpg') }}"
               class="w-full h-full object-cover rounded-sm"
               alt="Cocktail"
             />
           </div>
           <div class="gallery-item fade-in" style="transition-delay: 200ms">
             <img
-              src="{{ asset('storage/image7.jpg') }}"
+              src="{{ asset('images/image7.jpg') }}"
               class="w-full h-full object-cover rounded-sm"
               alt="Projector"
             />
           </div>
           <div class="gallery-item fade-in" style="transition-delay: 300ms">
             <img
-              src="{{ asset('storage/image4.jpg') }}"
+              src="{{ asset('images/image4.jpg') }}"
               class="w-full h-full object-cover rounded-sm"
               alt="Audio Booth"
             />
           </div>
           <div class="gallery-item fade-in" style="transition-delay: 400ms">
             <img
-              src="{{ asset('storage/image1.jpg') }}"
+              src="{{ asset('images/image1.jpg') }}"
               class="w-full h-full object-cover rounded-sm"
               alt="Martini"
             />
