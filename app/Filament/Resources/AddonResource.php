@@ -34,9 +34,9 @@ class AddonResource extends Resource
                     ->prefix('₹'),
                 FileUpload::make('image')
                     ->image()
-                    ->disk('public')
+                    ->disk('private')   // 👈 THIS IS THE KEY
                     ->directory('addons')
-                    ->label('Addon Image'),
+                    ->visibility('public'),
             ]);
     }
 

@@ -35,7 +35,7 @@ class TheatreResource extends Resource
                     ->numeric(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
-                    ->disk('s3')
+                    ->disk('private')   // 👈 THIS IS THE KEY
                     ->directory('theatres')
                     ->visibility('public')
                     ->required(),
