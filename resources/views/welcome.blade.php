@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{-- Seo team --}}
+<link rel="canonical" href="https://www.privatepopcorn.com/" />
+
 @section('content')
     <!-- Hero Section -->
     <header

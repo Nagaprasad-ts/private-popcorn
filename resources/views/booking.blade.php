@@ -23,7 +23,7 @@
                             <label class="relative group">
                                 <input type="radio" name="theatre" value="{{ $theatre->id }}" data-price="{{ $theatre->offer_price }}" class="peer sr-only" required>
                                 <div class="pb-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl cursor-pointer text-center transition-all peer-checked:border-gold peer-checked:bg-gray-800 hover:border-gold">
-                                    <img src="{{ asset('images/' . $theatre->image) }}" alt="{{ $theatre->name }}" class="w-full h-42 object-cover mb-3 rounded-t-lg">
+                                    <img src="{{ asset('storage/' . $theatre->image) }}" alt="{{ $theatre->name }}" class="w-full h-42 object-cover mb-3 rounded-t-lg">
                                     <div class="mt-2 flex flex-row items-center justify-around space-x-2">
                                         <span class="block text-md font-semibold text-gray-300 peer-checked:text-gold text-left">{{ $theatre->name }}</span>
                                         <div class="text-right flex flex-row items-baseline justify-end space-x-2">
@@ -82,9 +82,9 @@
 
                     <div>
                         <label class="block text-md font-bold uppercase tracking-wider text-gold mb-3">Optional Add Ons</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             @foreach ($addons as $addon)
-                                <label class="flex items-center p-3 border border-gray-700 rounded-xl bg-[#1a1a1a] cursor-pointer hover:bg-gray-800 transition-all">
+                                <label class="relative group">
                                     <input
                                         id="addon{{ $addon->id }}"
                                         name="addon"
@@ -92,9 +92,17 @@
                                         data-id="{{ $addon->id }}"
                                         data-name="{{ $addon->name }}"
                                         data-price="{{ $addon->price }}"
-                                        class="addon-checkbox h-5 w-5 rounded-md border-gray-600 text-gold focus:ring-gold"
+                                        class="addon-checkbox peer sr-only"
                                     >
-                                    <span class="ml-3 text-sm text-gray-300 font-medium">{{ $addon->name }} (₹{{ $addon->price }})</span>
+                                    <div class="pb-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl cursor-pointer text-center transition-all peer-checked:border-gold peer-checked:bg-gray-800 hover:border-gold">
+                                        @if ($addon->image)
+                                            <img src="{{ asset('storage/' . $addon->image) }}" alt="{{ $addon->name }}" class="w-full h-64 object-cover mb-3 rounded-t-lg">
+                                        @endif
+                                        <div class="mt-2 flex flex-col items-center justify-center">
+                                            <span class="block text-md font-semibold text-gray-300 peer-checked:text-gold">{{ $addon->name }}</span>
+                                            <span class="block text-sm text-gray-400 mt-1">₹{{ $addon->price }}</span>
+                                        </div>
+                                    </div>
                                 </label>
                             @endforeach
                         </div>

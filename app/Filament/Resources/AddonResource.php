@@ -13,6 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
+
 class AddonResource extends Resource
 {
     protected static ?string $model = Addon::class;
@@ -29,6 +32,11 @@ class AddonResource extends Resource
                     ->required()
                     ->numeric()
                     ->prefix('₹'),
+                FileUpload::make('image')
+                    ->image()
+                    ->disk('public')
+                    ->directory('addons')
+                    ->label('Addon Image'),
             ]);
     }
 
@@ -36,6 +44,7 @@ class AddonResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('image')->disk('public'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
