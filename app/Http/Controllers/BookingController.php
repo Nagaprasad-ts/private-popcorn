@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-
 use App\Models\Theatre;
 use App\Models\Slot;
 use App\Models\EventType; // Added EventType model
@@ -106,9 +105,9 @@ class BookingController extends Controller
 
         $amountInPaise = round($amountToPay * 100); // Razorpay expects amount in paise
 
-        $api = new \Razorpay\Api\Api(
-            env('RAZORPAY_KEY'),
-            env('RAZORPAY_SECRET')
+        $api = new Api(
+            config('services.razorpay.key'),
+            config('services.razorpay.secret')
         );
 
         $order = $api->order->create([
@@ -135,7 +134,10 @@ class BookingController extends Controller
         \Log::info('Razorpay verify payload', $request->all());
         
         try {
-            $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+            $api = new Api(
+                config('services.razorpay.key'),
+                config('services.razorpay.secret')
+            );
 
             $api->utility->verifyPaymentSignature([
                 'razorpay_order_id'   => $request->razorpay_order_id,
@@ -207,7 +209,10 @@ class BookingController extends Controller
     public function downloadReceipt($id)
     {
         $booking = Booking::find($id);
-        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+        $api = new Api(
+            config('services.razorpay.key'),
+            config('services.razorpay.secret')
+        );
         $order = $api->order->fetch($booking->razorpay_order_id);
 
         $total_price = $order->notes['total_amount'] ?? $booking->total_price;
