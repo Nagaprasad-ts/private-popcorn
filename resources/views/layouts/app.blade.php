@@ -21,6 +21,19 @@
             </style>
         @endif
 
+        {{-- google search console --}}
+        <meta name="google-site-verification" content="2S_alR8JMM9H2c9GlhCxdggdfXDA9Hfzoo9OGxUOZ5k" />
+
+        {{-- google analytics --}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLZXLSFB8X"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-BLZXLSFB8X');
+        </script>
+
         {{-- Styles --}}
         <style>
             :root {
