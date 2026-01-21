@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
-{{-- Seo team --}}
-<link rel="canonical" href="https://www.privatepopcorn.com/" />
+@section('meta')
+  {{-- Seo team --}}
+  <link rel="canonical" href="https://www.privatepopcorn.com" />
+  <title>Private Popcorn - Luxury Private Cinema</title>
+  <meta name="description" content="Experience unparalleled luxury and create timeless memories at Private Popcorn. Your exclusive event starts here.">
+  <meta name="keywords" content="private cinema, luxury theater, private screening, movie night, exclusive events">
+@endsection
 
 @section('content')
     <!-- Hero Section -->

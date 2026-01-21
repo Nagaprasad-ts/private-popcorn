@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('meta')
+    {{-- Seo team --}}
+    <link rel="canonical" href="https://www.privatepopcorn.com/blogs/{{ $blog->slug }}" />
+    <title>{{ $blog->meta_title }}</title>
+    <meta name="description" content="{{ $blog->meta_description }}">
+    <meta name="keywords" content="{{ is_array($blog->keywords) ? implode(', ', $blog->keywords) : $blog->keywords }}">
+@endsection
+
 @section('content')
 <section class="bg-[#0d0d0d] py-32 px-8">
     <div class="max-w-4xl mx-auto">

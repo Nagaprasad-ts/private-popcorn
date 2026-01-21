@@ -12,6 +12,7 @@ class Blog extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'image',
         'meta_title',
@@ -22,4 +23,9 @@ class Blog extends Model
     protected $casts = [
         'keywords' => 'array',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

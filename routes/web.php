@@ -38,6 +38,6 @@ Route::get('/booking/receipt/{id}', [App\Http\Controllers\BookingController::cla
 use App\Http\Controllers\BlogController;
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
-Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::get('/booking/receipt/{id}/download', [App\Http\Controllers\BookingController::class, 'downloadReceiptPdf']);

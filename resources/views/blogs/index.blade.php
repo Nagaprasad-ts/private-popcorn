@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('meta')
+    {{-- Seo team --}}
+    <link rel="canonical" href="https://www.privatepopcorn.com/blogs" />
+    <title>Blog - Private Popcorn</title>
+    <meta name="description" content="Explore our latest articles on Private Popcorn, covering a range of topics from movie reviews to industry insights. Stay updated with our expert content.">
+    <meta name="keywords" content="Private Popcorn blog, movie reviews, film industry insights, popcorn recipes, movie news">
+@endsection
+
 @section('content')
 <section class="bg-[#0d0d0d] py-32 px-8">
     <div class="max-w-7xl mx-auto">

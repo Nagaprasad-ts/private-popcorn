@@ -20,6 +20,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Set;
+use Illuminate\Support\Str;
+
+use Filament\Forms\Components\Section;
 
 class BlogResource extends Resource
 {
@@ -31,16 +35,21 @@ class BlogResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')->required(),
-                RichEditor::make('description')->required(),
+                TextInput::make('title')->required()->live(onBlur: true)
+                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                TextInput::make('slug')->required()->unique(ignorable: fn ($record) => $record),
+                RichEditor::make('description')->required()->columnSpan('full'),
                 FileUpload::make('image')
-                ->image()
-                ->disk('public')   // 👈 THIS IS THE KEY
+                    ->image()
+                    ->disk('public')
                     ->directory('blogs')
                     ->visibility('public'),
-                TextInput::make('meta_title'),
-                Textarea::make('meta_description'),
-                TagsInput::make('keywords'),
+                Section::make('SEO')
+                    ->schema([
+                        TextInput::make('meta_title'),
+                        Textarea::make('meta_description'),
+                        TagsInput::make('keywords'),
+                    ]),
             ]);
     }
 
