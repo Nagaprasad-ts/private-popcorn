@@ -227,6 +227,9 @@
           <a href="/" class="hover:text-gold transition-colors"
               >Home</a
             >
+          <a href="/about-us" class="hover:text-gold transition-colors"
+            >About Us</a
+          >
           <a href="/#services" class="hover:text-gold transition-colors"
             >Packages</a
           >

@@ -16,13 +16,13 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
-            'password' =>'password', // You should change this in production
+            'password' =>'Mbc@1122', // You should change this in production
         ]);
 
         User::create([
             'name' => 'Seo',
             'email' => 'seo@example.com',
-            'password' => 'seo', // You should change this in production
+            'password' => 'seo@123', // You should change this in production
         ]);
     }
 }
