@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about-us', function () {
+Route::get('/private-theatre-in-banglore', function () {
     return view('about-us');
 });
 
