@@ -59,6 +59,10 @@
             .bg-gold {
                 background-color: #f4cf4a;
             }
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+                cursor: pointer;
+            }
 
             .fade-in {
                 opacity: 0;

@@ -3,7 +3,7 @@
 @section('content')
     <!-- Main Content -->
     <main class="pt-32">
-        <div class="max-w-4xl w-full space-y-8 p-8 sm:p-12 rounded-2xl mx-auto">
+        <div class="max-w-5xl w-full space-y-8 p-8 sm:p-12 rounded-2xl mx-auto">
             <!-- Header Section -->
             <div class="text-center">
                 <h1 class="text-4xl font-black tracking-tight text-white">
@@ -22,7 +22,7 @@
                         @foreach ($theatres as $theatre)
                             <label class="relative group">
                                 <input type="radio" name="theatre" value="{{ $theatre->id }}" data-price="{{ $theatre->offer_price }}" class="peer sr-only" required>
-                                <div class="pb-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl cursor-pointer text-center transition-all peer-checked:border-gold peer-checked:bg-gray-800 hover:border-gold">
+                                <div class="pb-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl cursor-pointer text-center transition-all peer-checked:border-[#f4cf4a] peer-checked:bg-gray-800 hover:border-[#f4cf4a]">
                                     @if ($theatre->image)
                                         <img
                                             src="{{ Storage::disk('public')->url($theatre->image) }}"
@@ -30,8 +30,9 @@
                                             class="w-full h-42 object-cover mb-3 rounded-t-lg"
                                         >
                                     @endif
+                                    <p class="text-xs text-gray-400 uppercase tracking-wide">{{$theatre->description}}</p>
                                     <div class="mt-2 flex flex-row items-center justify-around space-x-2">
-                                        <span class="block text-md font-semibold text-gray-300 peer-checked:text-gold text-left">{{ $theatre->name }}</span>
+                                        <span class="block text-md font-semibold text-gray-300 peer-checked:text-[#f4cf4a] text-left">{{ $theatre->name }}</span>
                                         <div class="text-right flex flex-row items-baseline justify-end space-x-2">
                                             <span class="block text-xs text-gray-400 line-through mt-1">₹{{ $theatre->base_price }}</span>
                                             <span class="block text-lg text-gray-200 font-bold mt-1 uppercase">₹{{ $theatre->offer_price }}</span>
@@ -100,13 +101,28 @@
                                         data-price="{{ $addon->price }}"
                                         class="addon-checkbox peer sr-only"
                                     >
-                                    <div class="pb-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl cursor-pointer text-center transition-all peer-checked:border-gold peer-checked:bg-gray-800 hover:border-gold">
-                                        @if ($addon->image)
-                                            <img src="{{ Storage::disk('public')->url($addon->image) }}" alt="{{ $addon->name }}" class="w-full h-64 object-cover mb-3 rounded-t-lg">
-                                        @endif
-                                        <div class="mt-2 flex flex-col items-center justify-center">
-                                            <span class="block text-md font-semibold text-gray-300 peer-checked:text-gold">{{ $addon->name }}</span>
-                                            <span class="block text-sm text-gray-400 mt-1">₹{{ $addon->price }}</span>
+                                    <div class="p-3 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl cursor-pointer transition-all 
+                                        peer-checked:border-[#f4cf4a] peer-checked:bg-gray-800 hover:border-[#f4cf4a]">
+
+                                        <div class="flex items-center gap-4">
+                                            
+                                            @if ($addon->image)
+                                                <img 
+                                                    src="{{ Storage::disk('public')->url($addon->image) }}" 
+                                                    alt="{{ $addon->name }}" 
+                                                    class="w-20 h-20 object-cover rounded-md"
+                                                >
+                                            @endif
+
+                                            <div class="flex flex-col justify-center">
+                                                <span class="text-md font-semibold text-gray-300 peer-checked:text-[#f4cf4a]">
+                                                    {{ $addon->name }}
+                                                </span>
+                                                <span class="text-sm text-gray-400 mt-1">
+                                                    ₹{{ $addon->price }}
+                                                </span>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </label>
@@ -239,7 +255,7 @@
                             spanStatus.classList.add('text-red-300', 'font-bold'); // bold and bright red
                             spanStatus.textContent = 'Booked';
                         } else {
-                            spanSlot.classList.add('peer-checked:text-gold');
+                            spanSlot.classList.add('peer-checked:text-[#f4cf4a]', 'peer-checked:border-[#f4cf4a]');
                             spanStatus.classList.add('text-green-500');
                             spanStatus.textContent = 'Available';
                         }
