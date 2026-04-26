@@ -31,6 +31,12 @@ class Booking extends Model
         'addon' => 'array',
     ];
 
+    protected $attributes = [
+        'razorpay_payment_id' => 'MANUAL',
+        'razorpay_order_id'   => 'MANUAL',
+        'razorpay_signature'  => 'MANUAL',
+    ];
+
     public function eventType()
     {
         return $this->belongsTo(EventType::class);

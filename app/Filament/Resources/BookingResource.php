@@ -30,11 +30,22 @@ class BookingResource extends Resource
                 Forms\Components\DatePicker::make('booking_date')->required(),
                 Forms\Components\TextInput::make('slot')->required()->maxLength(255),
                 Forms\Components\TextInput::make('purpose')->required()->maxLength(255),
-                Forms\Components\TextInput::make('addon')->maxLength(255),
+                Forms\Components\TagsInput::make('addon'),
                 Forms\Components\TextInput::make('total_price')->required()->numeric(),
-                Forms\Components\TextInput::make('razorpay_payment_id')->maxLength(255)->disabled(),
-                Forms\Components\TextInput::make('razorpay_order_id')->maxLength(255)->disabled(),
-                Forms\Components\TextInput::make('razorpay_signature')->maxLength(255)->disabled(),
+                Forms\Components\TextInput::make('razorpay_payment_id')
+                    ->default('MANUAL')
+                    ->hidden()
+                    ->dehydrated(),  // ← force Filament to include this in the save payload
+
+                Forms\Components\TextInput::make('razorpay_order_id')
+                    ->default('MANUAL')
+                    ->hidden()
+                    ->dehydrated(),
+
+                Forms\Components\TextInput::make('razorpay_signature')
+                    ->default('MANUAL')
+                    ->hidden()
+                    ->dehydrated(),
             ]);
     }
 
@@ -49,7 +60,9 @@ class BookingResource extends Resource
                 Tables\Columns\TextColumn::make('booking_date')->date()->sortable(),
                 Tables\Columns\TextColumn::make('slot')->searchable(),
                 Tables\Columns\TextColumn::make('purpose')->searchable(),
-                Tables\Columns\TextColumn::make('addon')->searchable(),
+                Tables\Columns\TextColumn::make('addon')
+                    ->formatStateUsing(fn ($state) => is_array($state) ? implode(', ', $state) : $state)
+                    ->wrap(),
                 Tables\Columns\TextColumn::make('total_price')->money('INR')->sortable(),
                 Tables\Columns\TextColumn::make('razorpay_payment_id')->searchable()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('razorpay_order_id')->searchable()->toggleable(isToggledHiddenByDefault: true),
